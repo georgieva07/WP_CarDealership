@@ -1,0 +1,51 @@
+<style>
+    .textValue {
+        background-color: #d3d3d3;
+        opacity: 75%;
+        float:left;
+        width: 345px;
+        margin-left: 5px;
+    }
+
+    .textName {
+        text-align: right;
+        float:left;
+        width:150px;
+    }
+</style>
+<section xmlns:th="http://www.thymeleaf.org">
+    <div style="width: 500px;margin:auto;display:grid">
+        <img th:src="${carImage}" style="width: 500px;display: inherit;margin: auto;">
+        <div>
+            <label class="textName" for="modelName">Model name: </label>
+            <input class="textValue" type="text" readonly="readonly" id="modelName" th:value="${carModelName}"/>
+        </div>
+        <div>
+            <label class="textName" for="manufacturer">Manufacturer: </label>
+            <input class="textValue" type="text" readonly="readonly" id="manufacturer" th:value="${carManufacturer}"/>
+        </div>
+        <div>
+            <label class="textName" for="doors">Doors: </label>
+            <input class="textValue" type="text" readonly="readonly" id="doors" th:value="${carDoors}"/>
+        </div>
+        <div>
+            <label class="textName" for="engine">Engine: </label>
+            <input class="textValue" type="text" readonly="readonly" id="engine"  th:value="${carEngine}"/>
+        </div>
+        <div>
+            <label class="textName" for="body">Body: </label>
+            <input class="textValue" type="text" readonly="readonly" id="body"  th:value="${carBody}"/>
+        </div>
+        <div>
+            <label class="textName" for="turbo">Turbo: </label>
+            <input class="textValue" type="text" readonly="readonly" id="turbo"  th:value="${carTurbo}"/>
+        </div>
+        <div>
+            <label class="textName" for="color">Color: </label>
+            <input class="textValue" type="text" readonly="readonly" id="color"  th:value="${carColor}"/>
+        </div>
+        <th:block>
+            <a th:href='${"/CarCompare/" + carId}'>Compare with another car</a>
+        </th:block>
+    </div>
+</section>

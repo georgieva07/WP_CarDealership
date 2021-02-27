@@ -1,9 +1,12 @@
 package mk.ukim.finki.wp_project.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 public class CarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,7 +14,7 @@ public class CarModel {
     private String name;
     @ManyToOne
     private Manufacturer manufacturer;
-    @OneToMany
+    @OneToMany(mappedBy = "model")
     private List<Car> cars;
 
     public CarModel() {

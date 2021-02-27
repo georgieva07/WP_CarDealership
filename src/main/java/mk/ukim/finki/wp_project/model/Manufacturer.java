@@ -1,9 +1,12 @@
 package mk.ukim.finki.wp_project.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 public class Manufacturer {
 
     @Id

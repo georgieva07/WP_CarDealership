@@ -1,0 +1,170 @@
+<style>
+    .textValue {
+        background-color: #d3d3d3;
+        opacity: 75%;
+        float:left;
+        width: 345px;
+        margin-left: 5px;
+    }
+
+    .textName {
+        text-align: right;
+        float:left;
+        width:150px;
+    }
+</style>
+<section xmlns:th="http://www.thymeleaf.org">
+    <div style="width: 294px;margin:auto;display: inherit">
+    <span  style="width:210px;">
+        <input list="searchDatalist" name="car" id="carSelect" >
+        <datalist id="searchDatalist">
+        </datalist>
+    </span>
+    <span style="width: 84px;">
+        <button onclick="updateCompareCar()">Compare</button>
+    </span>
+    </div>
+    <div style="width:1000px;margin:auto;display: block">
+        <div style="width: 500px;display:grid;float:left;">
+            <img th:src="${carImage}" style="width: 500px;display: inherit;margin: auto;">
+            <div>
+                <label class="textName" for="modelName">Model name: </label>
+                <input class="textValue" type="text" readonly="readonly" id="modelName" th:value="${carModelName}"/>
+            </div>
+            <div>
+                <label class="textName" for="manufacturer">Manufacturer: </label>
+                <input class="textValue" type="text" readonly="readonly" id="manufacturer" th:value="${carManufacturer}"/>
+            </div>
+            <div>
+                <label class="textName" for="doors">Doors: </label>
+                <input class="textValue" type="text" readonly="readonly" id="doors" th:value="${carDoors}"/>
+            </div>
+            <div>
+                <label class="textName" for="engine">Engine: </label>
+                <input class="textValue" type="text" readonly="readonly" id="engine"  th:value="${carEngine}"/>
+            </div>
+            <div>
+                <label class="textName" for="body">Body: </label>
+                <input class="textValue" type="text" readonly="readonly" id="body"  th:value="${carBody}"/>
+            </div>
+            <div>
+                <label class="textName" for="turbo">Turbo: </label>
+                <input class="textValue" type="text" readonly="readonly" id="turbo"  th:value="${carTurbo}"/>
+            </div>
+            <div>
+                <label class="textName" for="color">Color: </label>
+                <input class="textValue" type="text" readonly="readonly" id="color"  th:value="${carColor}"/>
+            </div>
+        </div>
+        <div style="width: 500px;display:grid;">
+            <img th:src="${carImage}" style="width: 500px;display: inherit;margin: auto;">
+            <div>
+                <label class="textName" for="modelNameCompare">Model name: </label>
+                <input class="textValue" type="text" readonly="readonly" id="modelNameCompare"/>
+            </div>
+            <div>
+                <label class="textName" for="manufacturerCompare">Manufacturer: </label>
+                <input class="textValue" type="text" readonly="readonly" id="manufacturerCompare"/>
+            </div>
+            <div>
+                <label class="textName" for="doorsCompare">Doors: </label>
+                <input class="textValue" type="text" readonly="readonly" id="doorsCompare"/>
+            </div>
+            <div>
+                <label class="textName" for="engineCompare">Engine: </label>
+                <input class="textValue" type="text" readonly="readonly" id="engineCompare" />
+            </div>
+            <div>
+                <label class="textName" for="bodyCompare">Body: </label>
+                <input class="textValue" type="text" readonly="readonly" id="bodyCompare"/>
+            </div>
+            <div>
+                <label class="textName" for="turboCompare">Turbo: </label>
+                <input class="textValue" type="text" readonly="readonly" id="turboCompare" />
+            </div>
+            <div>
+                <label class="textName" for="colorCompare">Color: </label>
+                <input class="textValue" type="text" readonly="readonly" id="colorCompare" />
+            </div>
+        </div>
+    </div>
+    <br/>
+    <script>
+        var dataList = [
+            {
+                modelName: 'car 1',
+                manufacturer: 'manufacturer 1',
+                doors: 'doors 1',
+                engine: 'engine 1',
+                body: 'body 1',
+                turbo: 'turbo 1',
+                color: 'color 1',
+            },
+            {
+                modelName: 'car 2',
+                manufacturer: 'manufacturer 2',
+                doors: 'doors 2',
+                engine: 'engine 2',
+                body: 'body 2',
+                turbo: 'turbo 2',
+                color: 'color 2',
+            },
+            {
+                modelName: 'car 3',
+                manufacturer: 'manufacturer 3',
+                doors: 'doors 3',
+                engine: 'engine 3',
+                body: 'body 3',
+                turbo: 'turbo 3',
+                color: 'color 3',
+            },
+            {
+                modelName: 'car 4',
+                manufacturer: 'manufacturer 4',
+                doors: 'doors 4',
+                engine: 'engine 4',
+                body: 'body 4',
+                turbo: 'turbo 4',
+                color: 'color 4',
+            },
+            {
+                modelName: 'car 5',
+                manufacturer: 'manufacturer 5',
+                doors: 'doors 5',
+                engine: 'engine 5',
+                body: 'body 5',
+                turbo: 'turbo 5',
+                color: 'color 5',
+            },
+        ];
+        function fillSearchDataList() {
+            for (let i = 0; i < dataList.length; ++i) {
+                $("#searchDatalist").append("<option value = '" + dataList[i].modelName + "'/>");
+            }
+        }
+        fillSearchDataList();
+        function updateCompareCar(obj){
+            selected = $("#carSelect").val();
+            var car = undefined;
+            console.log(selected);
+            for(let i = 0; i < dataList.length; ++i) {
+                console.log(dataList[i]);
+                if(dataList[i].modelName === selected) {
+                    car = dataList[i];
+                }
+            }
+            if(car === undefined) {
+                console.log("No car found!");
+            }
+            else {
+                $("#modelNameCompare").val(car.modelName);
+                $("#manufacturerCompare").val(car.manufacturer);
+                $("#doorsCompare").val(car.doors);
+                $("#engineCompare").val(car.engine);
+                $("#bodyCompare").val(car.body);
+                $("#turboCompare").val(car.turbo);
+                $("#colorCompare").val(car.color);
+            }
+        }
+    </script>
+</section>

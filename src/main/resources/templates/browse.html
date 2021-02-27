@@ -1,0 +1,102 @@
+<style>
+    #options {
+        width:200px;
+        height:650px;
+        float:left;
+        overflow-y:scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    #results {
+        width:800px;
+        height:650px;
+        overflow-y:scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .resultOption {
+        width:200px;
+        height:200px;
+        float:left;
+        border-style: solid;
+        border-color: #f2f2f2;
+        border-collapse: collapse;
+        text-decoration: none;
+        overflow-wrap: normal;
+    }
+    .resultOptionImage {
+        max-width: 180px;
+        max-height: 176px;
+        padding-left: 10px;
+    }
+</style>
+<section xmlns:th="http://www.thymeleaf.org">
+    <div style="width: 1000px;margin: auto;display: block">
+        <div id="options">
+            OPTIONS HERE
+        </div>
+        <div id="results">
+
+        </div>
+    </div>
+    <div></div>
+    <!-- to add image url in model.car -->
+    <script>
+        var dataList = [
+            {
+                carId: 1,
+                modelName: 'car 1',
+                manufacturer: 'manufacturer 1',
+                doors: 'doors 1',
+                engine: 'engine 1',
+                body: 'body 1',
+                turbo: 'turbo 1',
+                color: 'color 1',
+            },
+            {
+                carId: 2,
+                modelName: 'car 2',
+                manufacturer: 'manufacturer 2',
+                doors: 'doors 2',
+                engine: 'engine 2',
+                body: 'body 2',
+                turbo: 'turbo 2',
+                color: 'color 2',
+            },
+            {
+                carId: 3,
+                modelName: 'car 3',
+                manufacturer: 'manufacturer 3',
+                doors: 'doors 3',
+                engine: 'engine 3',
+                body: 'body 3',
+                turbo: 'turbo 3',
+                color: 'color 3',
+            },
+            {
+                carId: 4,
+                modelName: 'car 4',
+                manufacturer: 'manufacturer 4',
+                doors: 'doors 4',
+                engine: 'engine 4',
+                body: 'body 4',
+                turbo: 'turbo 4',
+                color: 'color 4',
+            },
+            {
+                carId: 5,
+                modelName: 'car 5',
+                manufacturer: 'manufacturer 5',
+                doors: 'doors 5',
+                engine: 'engine 5',
+                body: 'body 5',
+                turbo: 'turbo 5',
+                color: 'color 5',
+            }
+        ];
+        for(let i = 0; i < dataList.length; ++i) {
+            $("#results").append("<div class='resultOption'><a href='/Car/" + dataList[i].carId + "'><div style='height: 176px;'><img class='resultOptionImage' src='https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg'></div>" +
+                "<p>"+ dataList[i].modelName + "</p> </a></div>")
+        }
+    </script>
+</section>
