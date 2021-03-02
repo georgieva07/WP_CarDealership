@@ -1,49 +1,112 @@
 <style>
-    .textValue {
-        background-color: #d3d3d3;
-        opacity: 75%;
-        float:left;
-        width: 345px;
-        margin-left: 5px;
+    .carTable tr th,td{
+        padding: 7px;
+    }
+    .carTable {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    .carTable tr td{
+        text-align: center;
+    }
+    .carTable tr td:first-child {
+        text-align: right;
+        border-right: solid gray;
+        border-radius: 15px 0px 0px 15px;
+        width:150px;
+    }
+    .carTable tr td:last-child {
+        text-align: left;
+        border-radius: 0px 15px 15px 0px;
+    }
+    .carTable tr th:first-child {
+        text-align: right;
+        border-right: solid gray;
+        border-radius: 15px 0px 0px 15px;
+        width:150px;
+    }
+    .carTable tr th:last-child {
+        text-align: left;
+        border-radius: 0px 15px 15px 0px;
     }
 
-    .textName {
-        text-align: right;
-        float:left;
-        width:150px;
+    .carTable > tbody > tr:nth-child(odd) {
+        background-color: rgba(215,215,215,70);
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
     <div style="width: 500px;margin:auto;display:grid">
         <img th:src="${carImage}" style="width: 500px;display: inherit;margin: auto;">
-        <div>
-            <label class="textName" for="modelName">Model name: </label>
-            <input class="textValue" type="text" readonly="readonly" id="modelName" th:value="${carModelName}"/>
-        </div>
-        <div>
-            <label class="textName" for="manufacturer">Manufacturer: </label>
-            <input class="textValue" type="text" readonly="readonly" id="manufacturer" th:value="${carManufacturer}"/>
-        </div>
-        <div>
-            <label class="textName" for="doors">Doors: </label>
-            <input class="textValue" type="text" readonly="readonly" id="doors" th:value="${carDoors}"/>
-        </div>
-        <div>
-            <label class="textName" for="engine">Engine: </label>
-            <input class="textValue" type="text" readonly="readonly" id="engine"  th:value="${carEngine}"/>
-        </div>
-        <div>
-            <label class="textName" for="body">Body: </label>
-            <input class="textValue" type="text" readonly="readonly" id="body"  th:value="${carBody}"/>
-        </div>
-        <div>
-            <label class="textName" for="turbo">Turbo: </label>
-            <input class="textValue" type="text" readonly="readonly" id="turbo"  th:value="${carTurbo}"/>
-        </div>
-        <div>
-            <label class="textName" for="color">Color: </label>
-            <input class="textValue" type="text" readonly="readonly" id="color"  th:value="${carColor}"/>
-        </div>
+        <table class="carTable">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Value
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Model name:
+                    </td>
+                    <td th:text="${carModelName}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Doors:
+                    </td>
+                    <td th:text="${carDoors}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Manufacturer:
+                    </td>
+                    <td th:text="${carManufacturer}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Body:
+                    </td>
+                    <td th:text="${carBody}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Engine:
+                    </td>
+                    <td th:text="${carEngine}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Turbo:
+                    </td>
+                    <td th:text="${carTurbo}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Color:
+                    </td>
+                    <td th:text="${carColor}">
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <th:block>
             <a th:href='${"/CarCompare/" + carId}'>Compare with another car</a>
         </th:block>

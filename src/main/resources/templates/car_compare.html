@@ -14,15 +14,15 @@
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
-    <div style="width: 294px;margin:auto;display: inherit">
-    <span  style="width:210px;">
-        <input list="searchDatalist" name="car" id="carSelect" >
+    <div style="width: 294px;margin:auto;display: block">
+    <div style="width:210px;display:block;float:left">
+        <input class="form-control form-control-sm" list="searchDatalist" name="car" id="carSelect" >
         <datalist id="searchDatalist">
         </datalist>
-    </span>
-    <span style="width: 84px;">
-        <button onclick="updateCompareCar()">Compare</button>
-    </span>
+    </div>
+    <div style="width: 84px;display:block;float:left">
+        <button class="btn btn-outline-secondary btn-sm" onclick="updateCompareCar()">Compare</button>
+    </div>
     </div>
     <div style="width:1000px;margin:auto;display: block">
         <div style="width: 500px;display:grid;float:left;">
