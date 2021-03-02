@@ -17,6 +17,8 @@ public class Country {
     private List<Manufacturer> manufacturers;
     @OneToMany
     private List<Salon> salons;
+    @OneToMany
+    private List<User> users;
 
     public Country() {
     }

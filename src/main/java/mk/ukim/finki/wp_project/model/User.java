@@ -1,6 +1,7 @@
-package mk.ukim.finki.wp_project.model.exceptions;
+package mk.ukim.finki.wp_project.model;
 
 import lombok.Data;
+import mk.ukim.finki.wp_project.model.Country;
 import mk.ukim.finki.wp_project.model.enumeration.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,10 +15,14 @@ import java.util.Collection;
 public class User implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String username;
     private String password;
     private String name;
     private String surname;
+    @ManyToOne
+    private Country country;
     @Enumerated(value = EnumType.STRING)
     private Role role;
     private boolean isAccountExpired = true;
@@ -51,6 +56,10 @@ public class User implements UserDetails {
 
     public String getSurname() {
         return surname;
+    }
+
+    public Country getCountry() {
+        return country;
     }
 
     public Role getRole() {
@@ -107,16 +116,21 @@ public class User implements UserDetails {
         isEnabled = enabled;
     }
 
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
     @Override
     public boolean isEnabled() {
         return false;
     }
-    public User(String username, String password, String name, String surname, Role role) {
+    public User(String username, String password, String name, String surname, Country country) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.role = role;
+        this.role = Role.ROLE_USER;
+        this.country = country;
     }
 
     public User() {
