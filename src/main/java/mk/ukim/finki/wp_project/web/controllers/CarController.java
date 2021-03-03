@@ -1,10 +1,10 @@
 package mk.ukim.finki.wp_project.web.controllers;
 
-import mk.ukim.finki.wp_project.model.Car;
-import mk.ukim.finki.wp_project.model.CarModel;
-import mk.ukim.finki.wp_project.model.Manufacturer;
+import mk.ukim.finki.wp_project.model.*;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidCarIdException;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidCarModelIdException;
+import mk.ukim.finki.wp_project.model.exceptions.InvalidCountryIdException;
+import mk.ukim.finki.wp_project.model.exceptions.InvalidSalonIdException;
 import mk.ukim.finki.wp_project.service.CarModelService;
 import mk.ukim.finki.wp_project.service.CarService;
 import mk.ukim.finki.wp_project.service.ManufacturerService;
@@ -29,9 +29,9 @@ public class CarController {
     }
     @GetMapping
     public String showBrowse(Model model) {
-        List<Car> carList = this.carService.listAll();
-        model.addAttribute("bodyContent", "browse_car");
-        model.addAttribute("cars", carList);
+        List<Car> cars = this.carService.listAll();
+        model.addAttribute("bodyContent", "car_browse");
+        model.addAttribute("cars", cars);
         return "main_view";
     }
 
@@ -57,7 +57,19 @@ public class CarController {
         List<Manufacturer> manufacturers = this.manufacturerService.listAll();
         model.addAttribute("carModels", carModels);
         model.addAttribute("manufacturers", manufacturers);
-        model.addAttribute("bodyContent", "new_car_form");
+        model.addAttribute("bodyContent", "car_form");
+        return "main_view";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String showEdit(@PathVariable Long id, Model model) throws InvalidSalonIdException, InvalidCarIdException {
+        Car car = this.carService.findById(id);
+        List<Manufacturer> manufacturers = this.manufacturerService.listAll();
+        List<CarModel> carModels = this.carModelService.listAll();
+        model.addAttribute("car", car);
+        model.addAttribute("manufacturers", manufacturers);
+        model.addAttribute("carModels", carModels);
+        model.addAttribute("bodyContent", "car_form");
         return "main_view";
     }
 
@@ -73,8 +85,36 @@ public class CarController {
                          Model model) throws InvalidCarModelIdException {
         this.carService.create(carModelId, body, engine, turbo, doors, color, price, image);
         List<Car> carList = this.carService.listAll();
-        model.addAttribute("bodyContent", "browse_car");
+        model.addAttribute("bodyContent", "car_browse");
         model.addAttribute("cars", carList);
+        return "main_view";
+    }
+
+    @PostMapping("/{id}")
+    public String update(@PathVariable Long id,
+                         @RequestParam Long carModelId,
+                         @RequestParam String body,
+                         @RequestParam String engine,
+                         @RequestParam String turbo,
+                         @RequestParam Integer doors,
+                         @RequestParam String color,
+                         @RequestParam Double price,
+                         @RequestParam String image,
+                         Model model) throws InvalidCarModelIdException, InvalidCarIdException {
+
+        this.carService.update(id, carModelId, body, engine, turbo, doors, color, price, image);
+        Car car = this.carService.findById(id);
+        model.addAttribute("bodyContent", "car");
+        model.addAttribute("car", car);
+        return "main_view";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, Model model) throws InvalidCarIdException {
+        this.carService.delete(id);
+        List<Car> cars = this.carService.listAll();
+        model.addAttribute("bodyContent", "car_browse");
+        model.addAttribute("cars", cars);
         return "main_view";
     }
 }

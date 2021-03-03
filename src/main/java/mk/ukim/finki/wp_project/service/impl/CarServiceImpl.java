@@ -37,4 +37,26 @@ public class CarServiceImpl implements CarService {
         Car car = new Car(model, body, engine, turbo, doors, color, price, image);
         return this.carRepository.save(car);
     }
+
+    @Override
+    public Car update(Long id, Long carModelId, String body, String engine, String turbo, Integer doors, String color, Double price, String image) throws InvalidCarModelIdException, InvalidCarIdException {
+        Car car = this.findById(id);
+        CarModel carModel = this.carModelService.findById(carModelId);
+        car.setModel(carModel);
+        car.setBody(body);
+        car.setEngine(engine);
+        car.setTurbo(turbo);
+        car.setDoors(doors);
+        car.setColor(color);
+        car.setPrice(price);
+        car.setImage(image);
+        return this.carRepository.save(car);
+    }
+
+    @Override
+    public Car delete(Long id) throws InvalidCarIdException {
+        Car car = this.findById(id);
+        this.carRepository.delete(car);
+        return car;
+    }
 }

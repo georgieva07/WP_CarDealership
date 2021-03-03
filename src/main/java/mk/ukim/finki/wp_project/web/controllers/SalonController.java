@@ -26,7 +26,7 @@ public class SalonController {
     @GetMapping
     public String showSalon(Model model) {
         List<Salon> salons = this.salonService.listAll();
-        model.addAttribute("bodyContent", "browse_salon");
+        model.addAttribute("bodyContent", "salon_browse");
         model.addAttribute("salons", salons);
         return "main_view";
     }
@@ -59,7 +59,7 @@ public class SalonController {
     public String create(@RequestParam String address, @RequestParam String city, @RequestParam Long countryId, Model model) throws InvalidCountryIdException {
         this.salonService.create(address, city, countryId);
         List<Salon> salons = this.salonService.listAll();
-        model.addAttribute("bodyContent", "browse_salon");
+        model.addAttribute("bodyContent", "salon_browse");
         model.addAttribute("salons", salons);
         return "main_view";
     }
@@ -73,7 +73,7 @@ public class SalonController {
 
         this.salonService.update(id, address, city, countryId);
         List<Salon> salons = this.salonService.listAll();
-        model.addAttribute("bodyContent", "browse_salon");
+        model.addAttribute("bodyContent", "salon_browse");
         model.addAttribute("salons", salons);
         return "main_view";
     }
@@ -82,7 +82,7 @@ public class SalonController {
     public String delete(@PathVariable Long id, Model model) throws InvalidSalonIdException {
         this.salonService.delete(id);
         List<Salon> salons = this.salonService.listAll();
-        model.addAttribute("bodyContent", "browse_salon");
+        model.addAttribute("bodyContent", "salon_browse");
         model.addAttribute("salons", salons);
         return "main_view";
     }
