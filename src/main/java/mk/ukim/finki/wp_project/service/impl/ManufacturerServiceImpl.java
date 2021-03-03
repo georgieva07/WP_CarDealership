@@ -8,9 +8,11 @@ import mk.ukim.finki.wp_project.repository.CountryRepository;
 import mk.ukim.finki.wp_project.repository.ManufacturerRepository;
 import mk.ukim.finki.wp_project.service.CountryService;
 import mk.ukim.finki.wp_project.service.ManufacturerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ManufacturerServiceImpl implements ManufacturerService {
     private final ManufacturerRepository manufacturerRepository;
     private final CountryService countryService;

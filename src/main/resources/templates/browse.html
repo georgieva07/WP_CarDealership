@@ -37,6 +37,10 @@
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
+    <div>
+        <a href="/car/add">ADD A NEW CAR</a>
+    </div>
+
     <div style="width: 1000px;margin: auto;display: block">
         <div id="options">
             OPTIONS HERE
@@ -101,7 +105,7 @@
             }
         ];
         for(let i = 0; i < dataList.length; ++i) {
-            $("#results").append("<div class='resultOption'><a href='/Car/" + dataList[i].carId + "'><div style='height: 176px;'><img class='resultOptionImage' src='https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg'></div>" +
+            $("#results").append("<div class='resultOption'><a href='/car/" + dataList[i].carId + "'><div style='height: 176px;'><img class='resultOptionImage' src='https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg'></div>" +
                 "<p>"+ dataList[i].modelName + "</p> </a></div>")
         }
     </script>

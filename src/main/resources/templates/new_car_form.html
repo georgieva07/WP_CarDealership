@@ -1,0 +1,63 @@
+<section xmlns:th="http://www.thymeleaf.org">
+<form method="post" th:action="@{'/browse'}">
+    <div>
+        <label>Car Model</label><br/>
+        <select id="carModel" name="carModelId">
+            <!-- For each category you should have one <option> like below  -->
+            <option th:each="model : ${carModels}" th:value="${model.id}" th:text="${model.name}"></option>
+        </select>
+    </div>
+    <div>
+        <label for="body">Body</label>
+        <input type="text"
+               id="body"
+               name="body"
+               required>
+    </div>
+    <div>
+        <label for="engine">Engine</label>
+        <input type="text"
+               id="engine"
+               name="engine"
+               required>
+    </div>
+    <div>
+        <label for="turbo">Turbo</label>
+        <input type="text"
+               id="turbo"
+               name="turbo"
+               required>
+    </div>
+    <div>
+        <label for="doors">Number of Doors</label>
+        <input type="number"
+               id="doors"
+               name="doors"
+               required>
+    </div>
+    <div>
+        <label for="color">Color</label>
+        <input type="text"
+               id="color"
+               name="color"
+               required>
+    </div>
+    <div>
+        <label for="price">Price</label>
+        <input type="double"
+               id="price"
+               name="price"
+               required>
+    </div>
+    <div>
+        <label for="image">Image</label>
+        <input type="text"
+               id="image"
+               name="image"
+               required>
+    </div>
+
+    <button id="submit" type="submit">Submit</button>
+    <a id="back" href="/browse" type="button">Back</a>
+</form>
+</section>

@@ -32,9 +32,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car create(Long modelId, int doors, String engine, String body, String turbo, String color) throws InvalidCarModelIdException {
+    public Car create(Long modelId, String body, String engine, String turbo, int doors, String color, Double price, String image) throws InvalidCarModelIdException {
         CarModel model = this.carModelService.findById(modelId);
-        Car car = new Car(doors, engine, body, turbo, color, model);
+        Car car = new Car(model, body, engine, turbo, doors, color, price, image);
         return this.carRepository.save(car);
     }
 }

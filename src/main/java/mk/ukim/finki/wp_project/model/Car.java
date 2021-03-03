@@ -15,18 +15,24 @@ public class Car {
     private String body;
     private String turbo;
     private String color;
+    private Double price;
+    private String image;
+
     @ManyToOne
     private CarModel model;
 
     public Car() {
     }
 
-    public Car(int doors, String engine, String body, String turbo, String color, CarModel model) {
-        this.doors = doors;
-        this.engine = engine;
-        this.body = body;
-        this.turbo = turbo;
-        this.color = color;
+    public Car(CarModel model, String body, String engine, String turbo, int doors, String color, Double price, String image) {
         this.model = model;
+        this.body = body;
+        this.engine = engine;
+        this.turbo = turbo;
+        this.doors = doors;
+        this.color = color;
+        this.price = price;
+        this.image = image;
+
     }
 }

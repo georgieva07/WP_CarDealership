@@ -12,5 +12,5 @@ public interface CarService {
 
     List<Car> listAll();
 
-    Car create(Long modelId, int doors, String engine, String body, String turbo, String color) throws InvalidCarModelIdException;
+    Car create(Long modelId, String body, String engine, String turbo, int doors, String color, Double price, String image) throws InvalidCarModelIdException;
 }

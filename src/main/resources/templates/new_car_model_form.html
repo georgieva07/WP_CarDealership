@@ -1,0 +1,21 @@
+<section xmlns:th="http://www.thymeleaf.org">
+    <form method="post" th:action="@{'/browse'}">
+        <div>
+            <label>Manufacturer</label><br/>
+            <select id="manufacturer" name="manufacturerId">
+                <!-- For each category you should have one <option> like below  -->
+                <option th:each="mnf : ${manufacturers}" th:value="${mnf.id}" th:text="${mnf.name}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   required>
+        </div>
+
+        <button id="submit" type="submit">Submit</button>
+        <a id="back" href="/browse" type="button">Back</a>
+    </form>
+</section>

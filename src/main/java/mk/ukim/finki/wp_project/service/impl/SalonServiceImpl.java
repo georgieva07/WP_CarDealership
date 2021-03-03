@@ -8,9 +8,11 @@ import mk.ukim.finki.wp_project.repository.CountryRepository;
 import mk.ukim.finki.wp_project.repository.SalonRepository;
 import mk.ukim.finki.wp_project.service.CountryService;
 import mk.ukim.finki.wp_project.service.SalonService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SalonServiceImpl implements SalonService {
     private final SalonRepository salonRepository;
     private final CountryService countryService;
