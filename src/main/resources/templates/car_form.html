@@ -1,13 +1,5 @@
 <section xmlns:th="http://www.thymeleaf.org">
-<form method="post" th:action="@{'/car'}">
-
-    <div>
-        <label>Manufacturer</label><br/>
-        <select id="manufacturer" name="manufacturerId">
-            <!-- For each category you should have one <option> like below  -->
-            <option th:each="mnf : ${manufacturers}" th:value="${mnf.id}" th:text="${mnf.name}"></option>
-        </select>
-    </div>
+<form method="post"  th:action="@{'/car/{id}' (id=${car?.id})}">
     <div>
         <label>Car Model</label><br/>
         <select id="carModel" name="carModelId">
@@ -20,6 +12,7 @@
         <input type="text"
                id="body"
                name="body"
+               th:value="${car.body}"
                required>
     </div>
     <div>
@@ -27,6 +20,7 @@
         <input type="text"
                id="engine"
                name="engine"
+               th:value="${car.engine}"
                required>
     </div>
     <div>
@@ -34,6 +28,7 @@
         <input type="text"
                id="turbo"
                name="turbo"
+               th:value="${car.turbo}"
                required>
     </div>
     <div>
@@ -41,6 +36,7 @@
         <input type="number"
                id="doors"
                name="doors"
+               th:value="${car.doors}"
                required>
     </div>
     <div>
@@ -48,6 +44,7 @@
         <input type="text"
                id="color"
                name="color"
+               th:value="${car.color}"
                required>
     </div>
     <div>
@@ -55,6 +52,7 @@
         <input type="double"
                id="price"
                name="price"
+               th:value="${car.price}"
                required>
     </div>
     <div>
@@ -62,10 +60,11 @@
         <input type="text"
                id="image"
                name="image"
+               th:value="${car.image}"
                required>
     </div>
 
     <button id="submit" type="submit">Submit</button>
-    <a id="back" href="/browse" type="button">Back</a>
+    <a id="back" th:href="@{'/car/{id}/edit' (id=${car.id})}" type="button">Back</a>
 </form>
 </section>

@@ -107,6 +107,10 @@
                 </tr>
             </tbody>
         </table>
+        <a th:href="@{'/car/{id}/edit' (id=${car.id})}">Edit</a>
+        <form method="post" th:action="@{'/car/{id}/delete' (id=${car.id})}">
+            <button type="submit">Delete</button>
+        </form>
         <th:block>
             <a th:href='${"/car/compare/" + car.id}'>Compare with another car</a>
         </th:block>

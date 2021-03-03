@@ -27,7 +27,7 @@ public class CarModelController {
     @GetMapping
     public String showModels(Model model) {
         List<CarModel> carModels = this.carModelService.listAll();
-        model.addAttribute("bodyContent", "browse_car_model");
+        model.addAttribute("bodyContent", "car_model_browse");
         model.addAttribute("carModels", carModels);
         return "main_view";
     }
@@ -43,7 +43,7 @@ public class CarModelController {
     public String showAddNewCarModel(Model model){
         List<Manufacturer> manufacturers = this.manufacturerService.listAll();
         model.addAttribute("manufacturers", manufacturers);
-        model.addAttribute("bodyContent", "new_car_model_form");
+        model.addAttribute("bodyContent", "car_model_form");
         return "main_view";
     }
 
@@ -54,7 +54,7 @@ public class CarModelController {
                          Model model) throws InvalidManufacturerIdException {
         this.carModelService.create(name, manufacturerId, image);
         List<CarModel> carModels = this.carModelService.listAll();
-        model.addAttribute("bodyContent", "browse_car_model");
+        model.addAttribute("bodyContent", "car_model_browse");
         model.addAttribute("carModels", carModels);
         return "main_view";
     }

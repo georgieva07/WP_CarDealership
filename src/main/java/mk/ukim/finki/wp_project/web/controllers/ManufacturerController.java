@@ -26,7 +26,7 @@ public class ManufacturerController {
     @GetMapping()
     public String showManufacturers(Model model) {
         List<Manufacturer> manufacturers = this.manufacturerService.listAll();
-        model.addAttribute("bodyContent", "browse_manufacturer");
+        model.addAttribute("bodyContent", "manufacturer_browse");
         model.addAttribute("manufacturers", manufacturers);
         return "main_view";
     }
@@ -41,7 +41,7 @@ public class ManufacturerController {
     public String showAddNewManufacturer(Model model){
         List<Country> countries = this.countryService.listAll();
         model.addAttribute("countries", countries);
-        model.addAttribute("bodyContent", "new_manufacturer_form");
+        model.addAttribute("bodyContent", "manufacturer_form");
         return "main_view";
     }
 
@@ -49,7 +49,7 @@ public class ManufacturerController {
     public String create(@RequestParam String name, @RequestParam Long countryId, Model model) throws InvalidCountryIdException {
         this.manufacturerService.create(name,countryId);
         List<Manufacturer> manufacturers = this.manufacturerService.listAll();
-        model.addAttribute("bodyContent", "browse_manufacturer");
+        model.addAttribute("bodyContent", "manufacturer_browse");
         model.addAttribute("manufacturers", manufacturers);
         return "main_view";
     }
