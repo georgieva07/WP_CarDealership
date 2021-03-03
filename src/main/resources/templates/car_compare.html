@@ -28,60 +28,65 @@
         <div style="width: 500px;display:grid;float:left;">
             <img th:src="${carImage}" style="width: 500px;display: inherit;margin: auto;">
             <div>
-                <label class="textName" for="modelName">Model name: </label>
-                <input class="textValue" type="text" readonly="readonly" id="modelName" th:value="${carModelName}"/>
-            </div>
-            <div>
                 <label class="textName" for="manufacturer">Manufacturer: </label>
-                <input class="textValue" type="text" readonly="readonly" id="manufacturer" th:value="${carManufacturer}"/>
+                <input class="textValue" type="text" readonly="readonly" id="manufacturer" th:value="${car.model.manufacturer.name}"/>
             </div>
             <div>
-                <label class="textName" for="doors">Doors: </label>
-                <input class="textValue" type="text" readonly="readonly" id="doors" th:value="${carDoors}"/>
-            </div>
-            <div>
-                <label class="textName" for="engine">Engine: </label>
-                <input class="textValue" type="text" readonly="readonly" id="engine"  th:value="${carEngine}"/>
+                <label class="textName" for="modelName">Model name: </label>
+                <input class="textValue" type="text" readonly="readonly" id="modelName" th:value="${car.model.name}"/>
             </div>
             <div>
                 <label class="textName" for="body">Body: </label>
-                <input class="textValue" type="text" readonly="readonly" id="body"  th:value="${carBody}"/>
+                <input class="textValue" type="text" readonly="readonly" id="body"  th:value="${car.body}"/>
+            </div>
+            <div>
+                <label class="textName" for="engine">Engine: </label>
+                <input class="textValue" type="text" readonly="readonly" id="engine"  th:value="${car.engine}"/>
             </div>
             <div>
                 <label class="textName" for="turbo">Turbo: </label>
-                <input class="textValue" type="text" readonly="readonly" id="turbo"  th:value="${carTurbo}"/>
+                <input class="textValue" type="text" readonly="readonly" id="turbo"  th:value="${car.turbo}"/>
+            </div>
+            <div>
+                <label class="textName" for="doors">Doors: </label>
+                <input class="textValue" type="text" readonly="readonly" id="doors" th:value="${car.doors}"/>
             </div>
             <div>
                 <label class="textName" for="color">Color: </label>
-                <input class="textValue" type="text" readonly="readonly" id="color"  th:value="${carColor}"/>
+                <input class="textValue" type="text" readonly="readonly" id="color"  th:value="${car.color}"/>
             </div>
         </div>
         <div style="width: 500px;display:grid;">
-            <img th:src="${carImage}" style="width: 500px;display: inherit;margin: auto;">
-            <div>
-                <label class="textName" for="modelNameCompare">Model name: </label>
-                <input class="textValue" type="text" readonly="readonly" id="modelNameCompare"/>
-            </div>
+            <img th:src="${car.image}" style="width: 500px;display: inherit;margin: auto;">
             <div>
                 <label class="textName" for="manufacturerCompare">Manufacturer: </label>
                 <input class="textValue" type="text" readonly="readonly" id="manufacturerCompare"/>
             </div>
             <div>
-                <label class="textName" for="doorsCompare">Doors: </label>
-                <input class="textValue" type="text" readonly="readonly" id="doorsCompare"/>
+                <label class="textName" for="modelNameCompare">Model name: </label>
+                <input class="textValue" type="text" readonly="readonly" id="modelNameCompare"/>
             </div>
-            <div>
-                <label class="textName" for="engineCompare">Engine: </label>
-                <input class="textValue" type="text" readonly="readonly" id="engineCompare" />
-            </div>
+
             <div>
                 <label class="textName" for="bodyCompare">Body: </label>
                 <input class="textValue" type="text" readonly="readonly" id="bodyCompare"/>
             </div>
+
+            <div>
+                <label class="textName" for="engineCompare">Engine: </label>
+                <input class="textValue" type="text" readonly="readonly" id="engineCompare" />
+            </div>
+
             <div>
                 <label class="textName" for="turboCompare">Turbo: </label>
                 <input class="textValue" type="text" readonly="readonly" id="turboCompare" />
             </div>
+
+            <div>
+                <label class="textName" for="doorsCompare">Doors: </label>
+                <input class="textValue" type="text" readonly="readonly" id="doorsCompare"/>
+            </div>
+
             <div>
                 <label class="textName" for="colorCompare">Color: </label>
                 <input class="textValue" type="text" readonly="readonly" id="colorCompare" />

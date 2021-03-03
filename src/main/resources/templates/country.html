@@ -1,1 +1,10 @@
-<section xmlns:th="http://www.thymeleaf.org"></section>
+<section xmlns:th="http://www.thymeleaf.org">
+    <div>
+        <a href="/country/add">ADD A NEW COUNTRY</a>
+    </div>
+    <div style="width: 500px;margin:auto;display:grid">
+        <ul>
+            <li th:each="country : ${countries}" th:text="${country.getName()}"></li>
+        </ul>
+    </div>
+</section>

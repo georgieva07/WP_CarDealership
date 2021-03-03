@@ -12,6 +12,7 @@ public class CarModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private String image;
     @ManyToOne
     private Manufacturer manufacturer;
     @OneToMany(mappedBy = "model")
@@ -20,8 +21,9 @@ public class CarModel {
     public CarModel() {
     }
 
-    public CarModel(String name, Manufacturer manufacturer) {
+    public CarModel(String name, Manufacturer manufacturer, String image) {
         this.name = name;
         this.manufacturer = manufacturer;
+        this.image = image;
     }
 }

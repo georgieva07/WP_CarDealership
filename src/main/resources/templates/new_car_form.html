@@ -1,5 +1,13 @@
 <section xmlns:th="http://www.thymeleaf.org">
 <form method="post" th:action="@{'/browse'}">
+
+    <div>
+        <label>Manufacturer</label><br/>
+        <select id="manufacturer" name="manufacturerId">
+            <!-- For each category you should have one <option> like below  -->
+            <option th:each="mnf : ${manufacturers}" th:value="${mnf.id}" th:text="${mnf.name}"></option>
+        </select>
+    </div>
     <div>
         <label>Car Model</label><br/>
         <select id="carModel" name="carModelId">

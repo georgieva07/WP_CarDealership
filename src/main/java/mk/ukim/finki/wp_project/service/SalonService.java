@@ -13,4 +13,5 @@ public interface SalonService {
     List<Salon> listAll();
 
     Salon create(String address, Long countryId) throws InvalidCountryIdException;
+
 }

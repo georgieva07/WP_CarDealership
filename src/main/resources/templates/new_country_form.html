@@ -1,0 +1,13 @@
+<section xmlns:th="http://www.thymeleaf.org">
+    <form method="post" th:action="@{'/country'}">
+        <div>
+            <label for="name">Name</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   required>
+        </div>
+        <button id="submit" type="submit">Submit</button>
+        <a id="back" href="/country" type="button">Back</a>
+    </form>
+</section>

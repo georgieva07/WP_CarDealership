@@ -36,7 +36,7 @@
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
     <div style="width: 500px;margin:auto;display:grid">
-        <img th:src="${carImage}" style="width: 500px;display: inherit;margin: auto;">
+        <img th:src="${car.image}" style="width: 500px;display: inherit;margin: auto;">
         <table class="carTable">
             <thead>
                 <tr>
@@ -51,25 +51,17 @@
             <tbody>
                 <tr>
                     <td>
-                        Model name:
-                    </td>
-                    <td th:text="${carModelName}">
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Doors:
-                    </td>
-                    <td th:text="${carDoors}">
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         Manufacturer:
                     </td>
-                    <td th:text="${carManufacturer}">
+                    <td th:text="${car.model.manufacturer.name}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Model name:
+                    </td>
+                    <td th:text="${car.model.name}">
 
                     </td>
                 </tr>
@@ -77,7 +69,7 @@
                     <td>
                         Body:
                     </td>
-                    <td th:text="${carBody}">
+                    <td th:text="${car.body}">
 
                     </td>
                 </tr>
@@ -85,7 +77,7 @@
                     <td>
                         Engine:
                     </td>
-                    <td th:text="${carEngine}">
+                    <td th:text="${car.engine}">
 
                     </td>
                 </tr>
@@ -93,7 +85,15 @@
                     <td>
                         Turbo:
                     </td>
-                    <td th:text="${carTurbo}">
+                    <td th:text="${car.turbo}">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Doors:
+                    </td>
+                    <td th:text="${car.doors}">
 
                     </td>
                 </tr>
@@ -101,14 +101,14 @@
                     <td>
                         Color:
                     </td>
-                    <td th:text="${carColor}">
+                    <td th:text="${car.color}">
 
                     </td>
                 </tr>
             </tbody>
         </table>
         <th:block>
-            <a th:href='${"/car/compare/" + carId}'>Compare with another car</a>
+            <a th:href='${"/car/compare/" + car.id}'>Compare with another car</a>
         </th:block>
     </div>
 </section>

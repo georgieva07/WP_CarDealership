@@ -1,5 +1,5 @@
 <section xmlns:th="http://www.thymeleaf.org">
-    <form method="post" th:action="@{'/browse'}">
+    <form method="post" th:action="@{'/model'}">
         <div>
             <label>Manufacturer</label><br/>
             <select id="manufacturer" name="manufacturerId">
@@ -14,7 +14,13 @@
                    name="name"
                    required>
         </div>
-
+        <div>
+            <label for="image">Image</label>
+            <input type="text"
+                   id="image"
+                   name="image"
+                   required>
+        </div>
         <button id="submit" type="submit">Submit</button>
         <a id="back" href="/browse" type="button">Back</a>
     </form>
