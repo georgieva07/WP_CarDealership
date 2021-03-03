@@ -1,10 +1,64 @@
+<style>
+    .carTable tr th,td{
+        padding: 7px;
+    }
+    .carTable {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    .carTable tr td{
+        text-align: center;
+    }
+    .carTable tr td:first-child {
+        text-align: right;
+        border-right: solid gray;
+        border-radius: 15px 0px 0px 15px;
+        width:150px;
+    }
+    .carTable tr td:last-child {
+        text-align: left;
+        border-radius: 0px 15px 15px 0px;
+    }
+    .carTable tr th:first-child {
+        text-align: right;
+        border-right: solid gray;
+        border-radius: 15px 0px 0px 15px;
+        width:150px;
+    }
+    .carTable tr th:last-child {
+        text-align: left;
+        border-radius: 0px 15px 15px 0px;
+    }
+
+    .carTable > tbody > tr:nth-child(odd) {
+        background-color: rgba(215,215,215,70);
+    }
+</style>
 <section xmlns:th="http://www.thymeleaf.org">
-    <div>
-        <a href="/country/add">ADD A NEW COUNTRY</a>
-    </div>
     <div style="width: 500px;margin:auto;display:grid">
-        <ul>
-            <li th:each="country : ${countries}" th:text="${country.getName()}"></li>
-        </ul>
+        <table class="carTable">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Country:
+                </td>
+                <td th:text="${country.name}">
+
+                </td>
+            </tbody>
+        </table>
+        <th:block>
+            <a href="/country">Back</a>
+        </th:block>
     </div>
 </section>

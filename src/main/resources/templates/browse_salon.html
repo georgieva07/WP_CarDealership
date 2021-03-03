@@ -1,0 +1,30 @@
+<section xmlns:th="http://www.thymeleaf.org">
+    <div>
+        <a href="/dealership/add">ADD A NEW DEALERTSHIP</a>
+    </div>
+    <div style="width: 500px;margin:auto;display:grid">
+        <table>
+            <thead>
+            <tr>
+                <td>Country</td>
+                <td>City</td>
+                <td>Address</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="salon : ${salons}">
+                <td th:text="${salon.country.name}"></td>
+                <td th:text=" ${salon.city}"></td>
+                <td th:text=" ${salon.address}"></td>
+                <td>
+                    <a th:href="@{'/dealership/{id}' (id=${salon.id})}">See More</a>
+                    <a th:href="@{'/dealership/{id}/edit' (id=${salon.id})}">Edit</a>
+                    <form method="post" th:action="@{'/dealership/{id}/delete' (id=${salon.id})}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

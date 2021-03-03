@@ -11,4 +11,6 @@ public interface CountryService {
     List<Country> listAll();
 
     Country create(String name);
+
+    Country update(Long id, String name) throws InvalidCountryIdException;
 }

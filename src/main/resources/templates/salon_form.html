@@ -1,16 +1,24 @@
 <section xmlns:th="http://www.thymeleaf.org">
-    <form method="post" th:action="@{'/dealership'}">
+    <form method="post" th:action="@{'/dealership/{id}' (id=${salon?.id})}">
         <div>
             <label for="address">Address</label>
             <input type="text"
                    id="address"
                    name="address"
+                   th:value="${salon?.address}"
+                   required>
+        </div>
+        <div>
+            <label for="city">City</label>
+            <input type="text"
+                   id="city"
+                   name="city"
+                   th:value="${salon?.city}"
                    required>
         </div>
         <div>
             <label>Country</label><br/>
             <select id="country" name="countryId">
-                <!-- For each category you should have one <option> like below  -->
                 <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name}"></option>
             </select>
         </div>

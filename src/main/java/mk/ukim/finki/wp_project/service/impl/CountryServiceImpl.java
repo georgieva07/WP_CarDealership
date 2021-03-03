@@ -29,6 +29,13 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Country create(String name) {
         Country coutry = new Country(name);
-        return  this.countryRepository.save(coutry);
+        return this.countryRepository.save(coutry);
+    }
+
+    @Override
+    public Country update(Long id, String name) throws InvalidCountryIdException {
+        Country country = this.findById(id);
+        country.setName(name);
+        return this.countryRepository.save(country);
     }
 }

@@ -1,0 +1,23 @@
+<section xmlns:th="http://www.thymeleaf.org">
+    <div>
+        <a href="/country/add">ADD A NEW COUNTRY</a>
+    </div>
+    <div style="width: 500px;margin:auto;display:grid">
+        <table>
+            <thead>
+            <tr>
+                <td>Country</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="country : ${countries}">
+                <td th:text="${country.name}"></td>
+                <td>
+                    <a th:href="@{'/country/{id}' (id=${country.id})}">See More</a>
+                    <a th:href="@{'/country/{id}/edit' (id=${country.id})}">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
