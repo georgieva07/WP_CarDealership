@@ -1,7 +1,9 @@
 package mk.ukim.finki.wp_project.web.controllers;
 
+import mk.ukim.finki.wp_project.model.CarModel;
 import mk.ukim.finki.wp_project.model.Country;
 import mk.ukim.finki.wp_project.model.Manufacturer;
+import mk.ukim.finki.wp_project.model.exceptions.InvalidCarModelIdException;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidCountryIdException;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidManufacturerIdException;
 import mk.ukim.finki.wp_project.service.CountryService;
@@ -45,12 +47,44 @@ public class ManufacturerController {
         return "main_view";
     }
 
+    @GetMapping("/{id}/edit")
+    public String showEdit(@PathVariable Long id, Model model) throws InvalidManufacturerIdException {
+        List<Country> countries = this.countryService.listAll();
+        model.addAttribute("manufacturer", this.manufacturerService.findById(id));
+        model.addAttribute("countries", countries);
+        model.addAttribute("bodyContent", "manufacturer_form");
+        return "main_view";
+    }
+
+
     @PostMapping
-    public String create(@RequestParam String name, @RequestParam Long countryId, Model model) throws InvalidCountryIdException {
-        this.manufacturerService.create(name,countryId);
+    public String create(@RequestParam String name, @RequestParam Long countryId, @RequestParam String image, Model model) throws InvalidCountryIdException {
+        this.manufacturerService.create(name,countryId, image);
         List<Manufacturer> manufacturers = this.manufacturerService.listAll();
         model.addAttribute("bodyContent", "manufacturer_browse");
         model.addAttribute("manufacturers", manufacturers);
+        return "main_view";
+    }
+
+    @PostMapping("/{id}")
+    public String update(@PathVariable Long id,
+                         @RequestParam String name,
+                         @RequestParam Long countryId,
+                         @RequestParam String image,
+                         Model model) throws InvalidManufacturerIdException, InvalidCountryIdException {
+
+        this.manufacturerService.update(id, name, countryId, image);
+        model.addAttribute("bodyContent", "manufacturer");
+        model.addAttribute("manufacturer", this.manufacturerService.findById(id));
+        return "main_view";
+    }
+
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Long id, Model model) throws InvalidManufacturerIdException {
+        this.manufacturerService.delete(id);
+        List<Manufacturer> manufacturers = this.manufacturerService.listAll();
+        model.addAttribute("bodyContent", "manufacturer_browse");
+        model.addAttribute("carModels", manufacturers);
         return "main_view";
     }
 }

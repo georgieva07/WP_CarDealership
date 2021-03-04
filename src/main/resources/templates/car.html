@@ -35,6 +35,9 @@
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
+    <h1 th:text="${car.name}"/>
+    <br>
+
     <div style="width: 500px;margin:auto;display:grid">
         <img th:src="${car.image}" style="width: 500px;display: inherit;margin: auto;">
         <table class="carTable">

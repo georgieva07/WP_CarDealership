@@ -13,6 +13,7 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private String image;
     @ManyToOne
     private Country country;
     @OneToMany
@@ -21,8 +22,9 @@ public class Manufacturer {
     public Manufacturer() {
     }
 
-    public Manufacturer(String name, Country country) {
+    public Manufacturer(String name, Country country, String image) {
         this.name = name;
         this.country = country;
+        this.image = image;
     }
 }

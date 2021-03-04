@@ -17,6 +17,7 @@ public class Car {
     private String color;
     private Double price;
     private String image;
+    private String name;
 
     @ManyToOne
     private CarModel model;
@@ -24,7 +25,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(CarModel model, String body, String engine, String turbo, int doors, String color, Double price, String image) {
+    public Car(String name, CarModel model, String body, String engine, String turbo, int doors, String color, Double price, String image) {
         this.model = model;
         this.body = body;
         this.engine = engine;
@@ -33,6 +34,6 @@ public class Car {
         this.color = color;
         this.price = price;
         this.image = image;
-
+        this.name = name;
     }
 }
