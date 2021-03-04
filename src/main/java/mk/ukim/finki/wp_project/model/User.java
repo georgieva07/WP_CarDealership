@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Collections;
 
 @Data
 @Entity
@@ -25,14 +26,14 @@ public class User implements UserDetails {
     private Country country;
     @Enumerated(value = EnumType.STRING)
     private Role role;
-    private boolean isAccountExpired = true;
+    private boolean isAccountExpired = false;
     private boolean isAccountNonLocked = true;
     private boolean isCredentialsNonExpired = true;
     private boolean isEnabled = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(role);
     }
 
     @Override
@@ -122,8 +123,18 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return isEnabled;
     }
+
+    public User(String username, String password, String name, String surname, Role role, Country country) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.role = role;
+        this.country = country;
+    }
+
     public User(String username, String password, String name, String surname, Country country) {
         this.username = username;
         this.password = password;
