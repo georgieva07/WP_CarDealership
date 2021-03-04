@@ -45,9 +45,10 @@ public class CarController {
 
     @GetMapping("/compare/{id}")
     public String showCarCompare(@PathVariable Long id, Model model) throws InvalidCarIdException {
+        List<Car> cars = this.carService.listAll();
         model.addAttribute("bodyContent", "car_compare");
         model.addAttribute("car", this.carService.findById(id));
-        model.addAttribute("compare_with", this.carService.listAll());
+        model.addAttribute("compare_with", cars);
         return "main_view";
     }
 
@@ -62,12 +63,9 @@ public class CarController {
     }
 
     @GetMapping("/{id}/edit")
-    public String showEdit(@PathVariable Long id, Model model) throws InvalidSalonIdException, InvalidCarIdException {
-        Car car = this.carService.findById(id);
-        List<Manufacturer> manufacturers = this.manufacturerService.listAll();
+    public String showEdit(@PathVariable Long id, Model model) throws InvalidCarIdException {
         List<CarModel> carModels = this.carModelService.listAll();
-        model.addAttribute("car", car);
-        model.addAttribute("manufacturers", manufacturers);
+        model.addAttribute("car", this.carService.findById(id));
         model.addAttribute("carModels", carModels);
         model.addAttribute("bodyContent", "car_form");
         return "main_view";
@@ -103,9 +101,8 @@ public class CarController {
                          Model model) throws InvalidCarModelIdException, InvalidCarIdException {
 
         this.carService.update(id, carModelId, body, engine, turbo, doors, color, price, image);
-        Car car = this.carService.findById(id);
         model.addAttribute("bodyContent", "car");
-        model.addAttribute("car", car);
+        model.addAttribute("car", this.carService.findById(id));
         return "main_view";
     }
 

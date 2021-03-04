@@ -1,10 +1,11 @@
 <section xmlns:th="http://www.thymeleaf.org">
-    <form method="post" th:action="@{'/manufacturer'}">
+    <form method="post" th:action="@{'/manufacturer/{id}' (id=${manufacturer?.id})}">
         <div>
             <label for="name">Name</label>
             <input type="text"
                    id="name"
                    name="name"
+                   th:value="${manufacturer?.name}"
                    required>
         </div>
         <div>
@@ -14,7 +15,15 @@
                 <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name}"></option>
             </select>
         </div>
+        <div>
+            <label for="image">Image</label>
+            <input type="text"
+                   id="image"
+                   name="image"
+                   th:value="${manufacturer?.image}"
+                   required>
+        </div>
         <button id="submit" type="submit">Submit</button>
-        <a id="back" href="/manufacturer" type="button">Back</a>
+        <a id="back" th:href="@{'/manufacturer/{id}' (id=${manufacturer?.id})}" type="button">Back</a>
     </form>
 </section>

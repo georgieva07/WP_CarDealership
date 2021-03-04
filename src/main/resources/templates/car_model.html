@@ -36,7 +36,7 @@
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
     <div style="width: 500px;margin:auto;display:grid">
-        <img th:src="${model.image}" style="width: 500px;display: inherit;margin: auto;">
+        <img th:src="${carModel.image}" style="width: 500px;display: inherit;margin: auto;">
         <table class="carTable">
             <thead>
             <tr>
@@ -53,7 +53,7 @@
                 <td>
                     Manufacturer:
                 </td>
-                <td th:text="${model.manufacturer.name}">
+                <td th:text="${carModel.manufacturer.name}">
 
                 </td>
             </tr>
@@ -61,7 +61,7 @@
                 <td>
                     Model:
                 </td>
-                <td th:text="${model.name}">
+                <td th:text="${carModel.name}">
 
                 </td>
             </tr>
@@ -71,15 +71,18 @@
                 </td>
                 <td>
                     <div class="resultOption">
-                        <a th:each="car : ${model}" th:href="@{'/car/{id}' (id=${car.id})}">
-                            <div style="height: 176px;">
-                                <img class="resultOptionImage" th:src="${car.image}">
-                            </div>
-                        </a>
+                        <ul>
+                            <li th:each="car : ${carModel.cars}" >
+                                <a th:href="@{'/car/{id}' (id=${car.id})}">
+                                    <th:block th:text="${car.name}"/>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
+        <a th:href="@{'/model/{id}/edit' (id=${carModel.id})}">Edit</a>
     </div>
 </section>

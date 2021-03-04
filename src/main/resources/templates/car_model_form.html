@@ -1,5 +1,5 @@
 <section xmlns:th="http://www.thymeleaf.org">
-    <form method="post" th:action="@{'/model'}">
+    <form method="post" th:action="@{'/model/{id}' (id=${carModel?.id})}">
         <div>
             <label>Manufacturer</label><br/>
             <select id="manufacturer" name="manufacturerId">
@@ -12,6 +12,7 @@
             <input type="text"
                    id="name"
                    name="name"
+                   th:value="${carModel?.name}"
                    required>
         </div>
         <div>
@@ -19,9 +20,10 @@
             <input type="text"
                    id="image"
                    name="image"
+                   th:value="${carModel?.image}"
                    required>
         </div>
         <button id="submit" type="submit">Submit</button>
-        <a id="back" href="/browse" type="button">Back</a>
+        <a id="back" th:href="@{'/model/{id}' (id=${carModel?.id})}" type="button">Back</a>
     </form>
 </section>
