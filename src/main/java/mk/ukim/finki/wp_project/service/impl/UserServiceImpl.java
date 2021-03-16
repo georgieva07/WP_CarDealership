@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new PasswordsDoNotMatchException();
         }
 
-        if(this.userRepository.findByUsername(username).isEmpty()){
+        if(!this.userRepository.findByUsername(username).isEmpty()){
             throw new UsernameAlreadyExistsException();
         }
 

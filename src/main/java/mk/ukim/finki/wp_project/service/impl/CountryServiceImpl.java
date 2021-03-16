@@ -28,8 +28,8 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country create(String name) {
-        Country coutry = new Country(name);
-        return this.countryRepository.save(coutry);
+        Country country = new Country(name);
+        return this.countryRepository.save(country);
     }
 
     @Override
