@@ -1,25 +1,18 @@
 package mk.ukim.finki.wp_project.service.impl;
 
 import mk.ukim.finki.wp_project.model.Country;
-import mk.ukim.finki.wp_project.model.MyUserDetails;
 import mk.ukim.finki.wp_project.model.User;
 import mk.ukim.finki.wp_project.model.exceptions.*;
 import mk.ukim.finki.wp_project.repository.CountryRepository;
 import mk.ukim.finki.wp_project.repository.UserRepository;
 import mk.ukim.finki.wp_project.service.UserService;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final CountryRepository countryRepository;
@@ -32,11 +25,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User login(String username, String password){
-        if (username == null || username.isEmpty() || password == null || password.isEmpty()){
-            throw new InvalidArgumentsExeption();
+    public User login(String username, String password) {
+        if (username==null || username.isEmpty() || password==null || password.isEmpty()) {
+            throw new InvalidArgumentsException();
         }
-        return userRepository.findByUsernameAndPassword(username, password).orElseThrow(InvalidUsernameCredentialsException::new);
+        return userRepository.findByUsernameAndPassword(username,
+                password).orElseThrow(InvalidUsernameCredentialsException::new);
     }
 
     @Override
@@ -62,9 +56,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user =  this.userRepository.findByUsername(username);
-
-        return user.map(MyUserDetails::new).get();
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return userRepository.findByUsername(s).orElseThrow(()->new UsernameNotFoundException(s));
     }
 }
