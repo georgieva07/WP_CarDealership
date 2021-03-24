@@ -1,9 +1,7 @@
 package mk.ukim.finki.wp_project.web.controllers;
 
 import mk.ukim.finki.wp_project.model.Country;
-import mk.ukim.finki.wp_project.model.exceptions.InvalidArgumentsExeption;
-import mk.ukim.finki.wp_project.model.exceptions.InvalidCountryIdException;
-import mk.ukim.finki.wp_project.model.exceptions.InvalidCountryNameException;
+import mk.ukim.finki.wp_project.model.exceptions.InvalidArgumentsException;
 import mk.ukim.finki.wp_project.model.exceptions.PasswordsDoNotMatchException;
 import mk.ukim.finki.wp_project.service.CountryService;
 import mk.ukim.finki.wp_project.service.UserService;
@@ -51,7 +49,7 @@ public class RegisterController {
         try {
             this.userService.register(username, password, repeatPassword, name, surname, country);
             return "redirect:/login";
-        }catch (PasswordsDoNotMatchException | InvalidArgumentsExeption ex){
+        }catch (PasswordsDoNotMatchException | InvalidArgumentsException ex){
             return "redirect:/register?error=" + ex.getMessage();
         }
     }
