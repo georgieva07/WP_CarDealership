@@ -38,7 +38,9 @@
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
     <div>
-        <a href="/car/add">ADD A NEW CAR</a>
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/car/add">ADD A NEW CAR</a>
+        </th:block>
     </div>
 
     <div style="width: 1000px;margin: auto;display: block">
