@@ -15,6 +15,7 @@ import java.util.Collections;
 @Table(name="dealership_users")
 public class User implements UserDetails {
 
+    //test
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
