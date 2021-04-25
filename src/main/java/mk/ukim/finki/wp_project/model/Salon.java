@@ -16,6 +16,12 @@ public class Salon {
     @ManyToOne
     private Country country;
 
+    @OneToMany(mappedBy = "salon")
+    private List<CarInStock> carsInStock;
+
+    @OneToOne
+    private User manager;
+
     public Salon() {
     }
 
