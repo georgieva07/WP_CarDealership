@@ -2,14 +2,17 @@ package mk.ukim.finki.wp_project.web.controllers;
 
 import mk.ukim.finki.wp_project.model.Country;
 import mk.ukim.finki.wp_project.model.Salon;
+import mk.ukim.finki.wp_project.model.User;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidCountryIdException;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidSalonIdException;
 import mk.ukim.finki.wp_project.service.CountryService;
 import mk.ukim.finki.wp_project.service.SalonService;
+import mk.ukim.finki.wp_project.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -17,10 +20,12 @@ import java.util.List;
 public class SalonController {
     private final SalonService salonService;
     private final CountryService countryService;
+    private final UserService userService;
 
-    public SalonController(SalonService salonService, CountryService countryService) {
+    public SalonController(SalonService salonService, CountryService countryService, UserService userService) {
         this.salonService = salonService;
         this.countryService = countryService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -32,9 +37,13 @@ public class SalonController {
     }
 
     @GetMapping("/{id}")
-    public String showSalon(@PathVariable Long id, Model model) throws InvalidSalonIdException {
+    public String showSalon(@PathVariable Long id, Model model, HttpServletRequest req) throws InvalidSalonIdException {
+        String username = req.getRemoteUser();
+        User user = userService.findByUsername(username);
         model.addAttribute("bodyContent", "salon");
         model.addAttribute("salon", this.salonService.findById(id));
+        model.addAttribute("user", user);
+
         return "main_view";
     }
 

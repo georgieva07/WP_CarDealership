@@ -14,7 +14,9 @@
                 <td th:text="${country.name}"></td>
                 <td>
                     <a th:href="@{'/country/{id}' (id=${country.id})}">See More</a>
-                    <a th:href="@{'/country/{id}/edit' (id=${country.id})}">Edit</a>
+                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a th:href="@{'/country/{id}/edit' (id=${country.id})}">Edit</a>
+                    </th:block>
                 </td>
             </tr>
             </tbody>

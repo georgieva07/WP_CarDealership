@@ -81,5 +81,11 @@
             </tr>
             </tbody>
         </table>
+<<<<<<< Updated upstream:src/main/resources/templates/model.html
+=======
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{'/model/{id}/edit' (id=${carModel.id})}">Edit</a>
+        </th:block>
+>>>>>>> Stashed changes:src/main/resources/templates/car_model.html
     </div>
 </section>

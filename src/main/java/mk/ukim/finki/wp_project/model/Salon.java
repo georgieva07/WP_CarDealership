@@ -15,6 +15,8 @@ public class Salon {
     private String city;
     @ManyToOne
     private Country country;
+    @OneToOne
+    private User manager;
 
     public Salon() {
     }

@@ -26,6 +26,8 @@ public class User implements UserDetails {
     private Country country;
     @Enumerated(value = EnumType.STRING)
     private Role role;
+    @OneToOne
+    private Salon managerOf;
     private boolean isAccountExpired = false;
     private boolean isAccountNonLocked = true;
     private boolean isCredentialsNonExpired = true;

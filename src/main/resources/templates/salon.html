@@ -74,6 +74,14 @@
             </tr>
             </tbody>
         </table>
+        <div>
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')" th:if="${user.id == salon.manager.id}">
+                <a th:href="@{'/dealership/{id}/edit' (id=${salon.id})}">Edit</a>
+                <form method="post" th:action="@{'/dealership/{id}/delete' (id=${salon.id})}">
+                    <button type="submit">Delete</button>
+                </form>
+            </th:block>
+        </div>
         <a href="/dealership">Back</a>
     </div>
 </section>

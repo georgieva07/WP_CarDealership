@@ -18,10 +18,6 @@
                 <td th:text=" ${salon.address}"></td>
                 <td>
                     <a th:href="@{'/dealership/{id}' (id=${salon.id})}">See More</a>
-                    <a th:href="@{'/dealership/{id}/edit' (id=${salon.id})}">Edit</a>
-                    <form method="post" th:action="@{'/dealership/{id}/delete' (id=${salon.id})}">
-                        <button type="submit">Delete</button>
-                    </form>
                 </td>
             </tr>
             </tbody>

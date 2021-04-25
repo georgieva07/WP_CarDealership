@@ -13,10 +13,20 @@
                     <div style="height: 176px;">
                         <img class="resultOptionImage" src="https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg">
                     </div>
+<<<<<<< Updated upstream
                     <p th:text="${model.name}"></p>
                 </a>
             </div>
         </div>
 
+=======
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{'/manufacturer/{id}/edit' (id=${manufacturer.id})}">Edit</a>
+        </th:block>
+>>>>>>> Stashed changes
     </div>
 </section>
