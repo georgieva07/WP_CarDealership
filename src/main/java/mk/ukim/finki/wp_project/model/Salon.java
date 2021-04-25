@@ -19,9 +19,6 @@ public class Salon {
     @OneToMany(mappedBy = "salon")
     private List<CarInStock> carsInStock;
 
-    @OneToOne
-    private User manager;
-
     public Salon() {
     }
 
