@@ -3,11 +3,67 @@
 <head>
     <!--- prezemeno od auditoriska -->
     <meta charset="UTF-8"/>
-    <title>Products</title>
+    <title>Car Dealership</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--- novo -->
+    <style>
+        .carTableHolder {
+            width: 500px;
+            margin:auto;
+            display:grid
+        }
+        .carTable tr th,td{
+            padding: 7px;
+        }
+        .carTable {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .carTable tr td:first-child {
+            text-align: right;
+            border-right: solid gray;
+            border-radius: 15px 0px 0px 15px;
+            width:150px;
+        }
+        .carTable tr td:last-child > input {
+            width:345px;
+            border-color: rgba(225, 225, 225, 100);
+            border-width: 2px;
+            border-radius: 5px;
+        }
+        .carTable tr td:last-child > select {
+            width:345px;
+            border-color: rgba(225, 225, 225, 100);
+            border-width: 2px;
+            border-radius: 5px;
+        }
+        .carTable tr td:last-child {
+            text-align: left;
+            border-radius: 0px 15px 15px 0px;
+        }
+        .carTable tr th:first-child {
+            text-align: right;
+            border-right: solid gray;
+            border-radius: 15px 0px 0px 15px;
+            width:150px;
+        }
+        .carTable tr th:last-child {
+            text-align: left;
+            border-radius: 0px 15px 15px 0px;
+        }
+
+        .carTable > tbody > tr:nth-child(odd) {
+            background-color: rgba(230,230,230,100);
+        }
+
+        .carTable > tbody > tr:nth-child(even) {
+            background-color: rgba(240,240,240,100);
+        }
+    </style>
 </head>
 <body onresize="resizeMainView()" >
 <header th:replace="fragments/header"/>

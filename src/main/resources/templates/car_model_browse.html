@@ -38,7 +38,9 @@
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
     <div>
-        <a href="/model/add">ADD A NEW CAR MODEL</a>
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/model/add">ADD A NEW CAR MODEL</a>
+        </th:block>
     </div>
 
     <div style="width: 1000px;margin: auto;display: block">
@@ -49,9 +51,9 @@
             <div class="resultOption">
                 <a th:each="model : ${carModels}" th:href="@{'/model/{id}' (id=${model.id})}">
                     <div style="height: 176px;">
-                        <img class="resultOptionImage" src="https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg">
+                        <img class="resultOptionImage" th:src="${model.image}">
                     </div>
-                <p></p>
+                <th:block th:text="${model.name}"/>
                 </a>
             </div>
         </div>

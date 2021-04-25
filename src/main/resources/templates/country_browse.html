@@ -1,6 +1,8 @@
 <section xmlns:th="http://www.thymeleaf.org">
     <div>
-        <a href="/country/add">ADD A NEW COUNTRY</a>
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/country/add">ADD A NEW COUNTRY</a>
+        </th:block>
     </div>
     <div style="width: 500px;margin:auto;display:grid">
         <table>

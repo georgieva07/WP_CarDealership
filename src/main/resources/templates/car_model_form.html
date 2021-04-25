@@ -1,27 +1,58 @@
 <section xmlns:th="http://www.thymeleaf.org">
-    <form method="post" th:action="@{'/model'}">
-        <div>
-            <label>Manufacturer</label><br/>
-            <select id="manufacturer" name="manufacturerId">
-                <!-- For each category you should have one <option> like below  -->
-                <option th:each="mnf : ${manufacturers}" th:value="${mnf.id}" th:text="${mnf.name}"></option>
-            </select>
-        </div>
-        <div>
-            <label for="name">Name</label>
-            <input type="text"
-                   id="name"
-                   name="name"
-                   required>
-        </div>
-        <div>
-            <label for="image">Image</label>
-            <input type="text"
-                   id="image"
-                   name="image"
-                   required>
-        </div>
+    <form method="post" th:action="@{'/model/{id}' (id=${carModel?.id})}">
+        <div class="carTableHolder">
+        <table class="carTable">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Manufacturer
+                </td>
+                <td>
+                    <select id="manufacturer" name="manufacturerId">
+                        <!-- For each category you should have one <option> like below  -->
+                        <option th:each="mnf : ${manufacturers}" th:value="${mnf.id}" th:text="${mnf.name}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           th:value="${carModel?.name}"
+                           required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Image
+                </td>
+                <td>
+                    <input type="text"
+                           id="image"
+                           name="image"
+                           th:value="${carModel?.image}"
+                           required>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
         <button id="submit" type="submit">Submit</button>
-        <a id="back" href="/browse" type="button">Back</a>
+        <a id="back" th:href="@{'/model/{id}' (id=${carModel?.id})}" type="button">Back</a>
+        </div>
     </form>
 </section>

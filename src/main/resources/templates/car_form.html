@@ -1,70 +1,117 @@
 <section xmlns:th="http://www.thymeleaf.org">
 <form method="post"  th:action="@{'/car/{id}' (id=${car?.id})}">
-    <div>
-        <label>Car Model</label><br/>
-        <select id="carModel" name="carModelId">
-            <!-- For each category you should have one <option> like below  -->
-            <option th:each="model : ${carModels}" th:value="${model.id}" th:text="${model.name}"></option>
-        </select>
+    <div class="carTableHolder">
+        <table class="carTable">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Car Model
+                    </td>
+                    <td>
+                        <input id="carModelId" list="carModels" name="carModelId" />
+                        <datalist id="carModels">
+                            <option th:each="model : ${carModels}" th:value="${model.id}" th:text="${model.name}"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Body
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="body"
+                               name="body"
+                               th:value="${car?.body}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Engine
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="engine"
+                               name="engine"
+                               th:value="${car?.engine}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Turbo
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="turbo"
+                               name="turbo"
+                               th:value="${car?.turbo}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Number of doors
+                    </td>
+                    <td>
+                        <input type="number"
+                               id="doors"
+                               name="doors"
+                               th:value="${car?.doors}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="color">Color</label>
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="color"
+                               name="color"
+                               th:value="${car?.color}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Price
+                    </td>
+                    <td>
+                        <input type="double"
+                               id="price"
+                               name="price"
+                               th:value="${car?.price}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Image
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="image"
+                               name="image"
+                               th:value="${car?.image}"
+                               required>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button id="submit" type="submit">Submit</button>
+        <a id="back" th:href="@{'/car/{id}' (id=${car?.id})}" type="button">Back</a>
     </div>
-    <div>
-        <label for="body">Body</label>
-        <input type="text"
-               id="body"
-               name="body"
-               th:value="${car.body}"
-               required>
-    </div>
-    <div>
-        <label for="engine">Engine</label>
-        <input type="text"
-               id="engine"
-               name="engine"
-               th:value="${car.engine}"
-               required>
-    </div>
-    <div>
-        <label for="turbo">Turbo</label>
-        <input type="text"
-               id="turbo"
-               name="turbo"
-               th:value="${car.turbo}"
-               required>
-    </div>
-    <div>
-        <label for="doors">Number of Doors</label>
-        <input type="number"
-               id="doors"
-               name="doors"
-               th:value="${car.doors}"
-               required>
-    </div>
-    <div>
-        <label for="color">Color</label>
-        <input type="text"
-               id="color"
-               name="color"
-               th:value="${car.color}"
-               required>
-    </div>
-    <div>
-        <label for="price">Price</label>
-        <input type="double"
-               id="price"
-               name="price"
-               th:value="${car.price}"
-               required>
-    </div>
-    <div>
-        <label for="image">Image</label>
-        <input type="text"
-               id="image"
-               name="image"
-               th:value="${car.image}"
-               required>
-    </div>
-
-    <button id="submit" type="submit">Submit</button>
-    <a id="back" th:href="@{'/car/{id}/edit' (id=${car.id})}" type="button">Back</a>
 </form>
 </section>

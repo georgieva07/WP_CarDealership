@@ -1,41 +1,9 @@
-<style>
-    .carTable tr th,td{
-        padding: 7px;
-    }
-    .carTable {
-        border-collapse: separate;
-        border-spacing: 0;
-    }
-    .carTable tr td{
-        text-align: center;
-    }
-    .carTable tr td:first-child {
-        text-align: right;
-        border-right: solid gray;
-        border-radius: 15px 0px 0px 15px;
-        width:150px;
-    }
-    .carTable tr td:last-child {
-        text-align: left;
-        border-radius: 0px 15px 15px 0px;
-    }
-    .carTable tr th:first-child {
-        text-align: right;
-        border-right: solid gray;
-        border-radius: 15px 0px 0px 15px;
-        width:150px;
-    }
-    .carTable tr th:last-child {
-        text-align: left;
-        border-radius: 0px 15px 15px 0px;
-    }
 
-    .carTable > tbody > tr:nth-child(odd) {
-        background-color: rgba(215,215,215,70);
-    }
-</style>
 <section xmlns:th="http://www.thymeleaf.org">
-    <div style="width: 500px;margin:auto;display:grid">
+    <h1 th:text="${car.name}"/>
+    <br>
+
+    <div class="carTableHolder">
         <img th:src="${car.image}" style="width: 500px;display: inherit;margin: auto;">
         <table class="carTable">
             <thead>

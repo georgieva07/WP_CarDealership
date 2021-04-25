@@ -1,12 +1,30 @@
 <section xmlns:th="http://www.thymeleaf.org">
     <form method="post"  th:action="@{'/country/{id}' (id=${country?.id})}">
-        <div>
-            <label for="name">Name</label>
-            <input type="text"
-                   id="name"
-                   name="name"
-                   th:value="${country?.name}"
-                   required>
+        <div class="carTableHolder">
+            <table class="carTable">
+                <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Value
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>
+                        <input type="text"
+                               id="name"
+                               name="name"
+                               th:value="${country?.name}"
+                               required>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <button id="submit" type="submit">Submit</button>
         <a id="back" href="/country" type="button">Back</a>

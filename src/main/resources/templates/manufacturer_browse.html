@@ -38,7 +38,9 @@
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
     <div>
-        <a href="/manufacturer/add">ADD A NEW MANUFACTURER</a>
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/manufacturer/add">ADD A NEW MANUFACTURER</a>
+        </th:block>
     </div>
 
     <div style="width: 1000px;margin: auto;display: block">
@@ -49,7 +51,7 @@
             <div>
                 <a th:each="mnf : ${manufacturers}" th:href="@{'/manufacturer/{id}' (id=${mnf.id})}">
                     <div style="height: 176px;">
-                        <img class="resultOptionImage" src="https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg">
+                        <img class="resultOptionImage" th:src="${mnf.image}">
                     </div>
                     <p th:text="${mnf.name}"></p>
                 </a>

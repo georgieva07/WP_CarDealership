@@ -32,9 +32,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car create(Long modelId, String body, String engine, String turbo, int doors, String color, Double price, String image) throws InvalidCarModelIdException {
-        CarModel model = this.carModelService.findById(modelId);
-        Car car = new Car(model, body, engine, turbo, doors, color, price, image);
+    public Car create(Long carModelId, String body, String engine, String turbo, int doors, String color, Double price, String image) throws InvalidCarModelIdException {
+        CarModel carModel = this.carModelService.findById(carModelId);
+        String name = carModel.getManufacturer().getName() + " " + carModel.getName() + " " + body + " - " + color;
+        Car car = new Car(name, carModel, body, engine, turbo, doors, color, price, image);
+        this.carModelService.addCarToCarModel(carModelId, car);
         return this.carRepository.save(car);
     }
 
@@ -42,6 +44,10 @@ public class CarServiceImpl implements CarService {
     public Car update(Long id, Long carModelId, String body, String engine, String turbo, Integer doors, String color, Double price, String image) throws InvalidCarModelIdException, InvalidCarIdException {
         Car car = this.findById(id);
         CarModel carModel = this.carModelService.findById(carModelId);
+        this.carModelService.removeCarFromCarModel(car.getModel().getId(), car);
+        this.carModelService.addCarToCarModel(carModelId, car);
+        String name = carModel.getManufacturer().getName() + " " + carModel.getName() + " " + body + " - " + color;
+        car.setName(name);
         car.setModel(carModel);
         car.setBody(body);
         car.setEngine(engine);
