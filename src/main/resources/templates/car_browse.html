@@ -8,7 +8,7 @@
         scrollbar-width: none;
     }
     #results {
-        width:800px;
+        width:1000px;
         height:650px;
         overflow-y:scroll;
         -ms-overflow-style: none;
@@ -28,12 +28,9 @@
                 <a href="/car/add">ADD A NEW CAR</a>
             </th:block>
         </div>
+        <input id="searchInput"type="text" class="form-control form-control-sm" onkeyup="searchCars()"></input>
     </div>
-
     <div style="width: 1000px;margin: auto;display: block">
-        <div id="options">
-            OPTIONS HERE
-        </div>
         <div id="results">
             <a th:each="car : ${cars}" th:href="@{'/car/{id}' (id=${car.id})}">
                 <div class="resultOption">
@@ -47,5 +44,20 @@
             </a>
         </div>
     </div>
-    <div></div>
+    <script>
+        function searchCars() {
+            var value = $("#searchInput").val();
+            console.log(value);
+            var cars = document.getElementsByClassName("resultOption");
+            for(let i = 0; i < cars.length; ++i) {
+                if(String(cars[i].children[1].innerText).search(value) === -1) {
+                    cars[i].hidden = true;
+                }
+                else {
+                    cars[i].hidden = false;
+                }
+                console.log(cars[i].children);
+            }
+        }
+    </script>
 </section>
