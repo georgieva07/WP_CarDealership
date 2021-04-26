@@ -21,10 +21,11 @@
             </div>
                 <div class="form-inline" style="margin-top: 15px">
                     <div class="input-group input-group-sm mb-3">
+                        <span sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="name"></span></span>
                         <a sec:authorize="isAnonymous()" class="btn btn-outline-secondary btn-sm" href="/login">Login</a>
                         <a sec:authorize="isAnonymous()" class="btn btn-secondary btn-sm" href="/register">Register</a>
                         <a sec:authorize="isAuthenticated()" class="btn btn-outline-secondary btn-sm" href="/logout">Logout</a>
-                        <span sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="name"></span></span>
+
                     </div>
                 </div>
             </div>

@@ -78,9 +78,11 @@
                 </td>
                 <td>
                     <ul>
-                        <li th:each="carInStock : ${cars}" >
+                        <li th:each="carInStock : ${salon.carsInStock}" >
                             <a th:href="@{'/car/{id}' (id=${carInStock.car.id})}">
                                 <th:block th:text="${carInStock.car.name}"/>
+                                <br>Quantity:
+                                <th:block th:text="${carInStock.quantity}"/>
                             </a>
                         </li>
                     </ul>
@@ -90,13 +92,14 @@
         </table>
         <div>
             <th:block sec:authorize="hasRole('ROLE_ADMIN')" th:if="${user.id == salon.manager.id}">
+                <a th:href="@{'/dealership/{id}/add/carstock' (id=${salon.id})}">Add a new car in this Dealership</a>
+                <br>
                 <a th:href="@{'/dealership/{id}/edit' (id=${salon.id})}">Edit</a>
                 <form method="post" th:action="@{'/dealership/{id}/delete' (id=${salon.id})}">
                     <button type="submit">Delete</button>
                 </form>
             </th:block>
         </div>
-        <a th:href="@{'/dealership/{id}/add/carstock' (id=${salon.id})}">Add a new car in this Dealership</a>
         <a href="/dealership">Back</a>
     </div>
 </section>
