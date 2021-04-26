@@ -12,6 +12,7 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique = true)
     private String name;
     @OneToMany
     private List<Manufacturer> manufacturers;

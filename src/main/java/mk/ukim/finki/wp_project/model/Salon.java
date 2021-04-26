@@ -24,9 +24,10 @@ public class Salon {
     public Salon() {
     }
 
-    public Salon(String address, String city, Country country) {
+    public Salon(String address, String city, Country country, User user) {
         this.address = address;
         this.city = city;
         this.country = country;
+        this.manager = user;
     }
 }

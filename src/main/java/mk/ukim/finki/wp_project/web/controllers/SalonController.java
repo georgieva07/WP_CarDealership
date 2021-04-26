@@ -65,8 +65,12 @@ public class SalonController {
     }
 
     @PostMapping
-    public String create(@RequestParam String address, @RequestParam String city, @RequestParam Long countryId, Model model) throws InvalidCountryIdException {
-        this.salonService.create(address, city, countryId);
+    public String create(@RequestParam String address,
+                         @RequestParam String city,
+                         @RequestParam Long countryId,
+                         Model model, HttpServletRequest req) throws InvalidCountryIdException {
+        User user = this.userService.findByUsername(req.getRemoteUser());
+        Salon salon = this.salonService.create(address, city, countryId, user);
         List<Salon> salons = this.salonService.listAll();
         model.addAttribute("bodyContent", "salon_browse");
         model.addAttribute("salons", salons);
@@ -78,9 +82,10 @@ public class SalonController {
                          @RequestParam String address,
                          @RequestParam String city,
                          @RequestParam Long countryId,
-                         Model model) throws InvalidCountryIdException, InvalidSalonIdException {
-
-        this.salonService.update(id, address, city, countryId);
+                         Model model,
+                         HttpServletRequest req) throws InvalidCountryIdException, InvalidSalonIdException {
+        User user = this.userService.findByUsername(req.getRemoteUser());
+        this.salonService.update(id, address, city, countryId, user);
         List<Salon> salons = this.salonService.listAll();
         model.addAttribute("bodyContent", "salon_browse");
         model.addAttribute("salons", salons);

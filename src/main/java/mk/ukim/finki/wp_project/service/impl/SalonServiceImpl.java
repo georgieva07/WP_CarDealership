@@ -2,6 +2,7 @@ package mk.ukim.finki.wp_project.service.impl;
 
 import mk.ukim.finki.wp_project.model.Country;
 import mk.ukim.finki.wp_project.model.Salon;
+import mk.ukim.finki.wp_project.model.User;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidCountryIdException;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidSalonIdException;
 import mk.ukim.finki.wp_project.repository.SalonRepository;
@@ -32,13 +33,14 @@ public class SalonServiceImpl implements SalonService {
     }
 
     @Override
-    public Salon create(String address, String city, Long countryId) throws InvalidCountryIdException {
+    public Salon create(String address, String city, Long countryId, User user) throws InvalidCountryIdException {
         Country country = this.countryService.findById(countryId);
-        Salon salon = new Salon(address, city, country);
+        Salon salon = new Salon(address, city, country, user);
         return this.salonRepository.save(salon);
     }
+
     @Override
-    public Salon update(Long id, String address, String city, Long countryId) throws InvalidCountryIdException, InvalidSalonIdException {
+    public Salon update(Long id, String address, String city, Long countryId, User user) throws InvalidCountryIdException, InvalidSalonIdException {
         Country country = this.countryService.findById(countryId);
         Salon salon = this.findById(id);
         salon.setAddress(address);
