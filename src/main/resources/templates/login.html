@@ -1,5 +1,5 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org">
-    <form class="form-signin mt-xl-5" method="post" th:action="@{'/login'}">
+    <form class="form-signin mt-xl-5 carTableHolder" method="post" th:action="@{'/login'}">
         <h2 class="form-signin-heading">Sign in</h2>
         <p>
             <label for="username" class="sr-only">Username</label>
@@ -14,7 +14,9 @@
 
         <div th:text="${param.error}" class="text-danger"></div>
 
-        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button id="submit" class="carButton btn btn-outline-primary btn-sm" type="submit">Sign in</button>
     </form>
-    <a href="/register" class="btn btn-block btn-light">Dont have an account? Register here!</a>
+    <div class="carButtons">
+        <a href="/register">Dont have an account? Register here!</a>
+    </div>
 </div>

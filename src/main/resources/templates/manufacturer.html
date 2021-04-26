@@ -35,11 +35,11 @@
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
-    <div>
-        <h1 th:text="${manufacturer.name}"/>
+    <div class="carTitle">
+        <h2 th:text="${manufacturer.name}"/>
     </div>
     <div style="width: 500px;margin:auto;display:grid">
-        <img th:src="${manufacturer.image}" style="width: 500px;display: inherit;margin: auto;">
+        <img th:src="${manufacturer.image}" class="carImage">
         <table class="carTable">
             <thead>
             <tr>
@@ -58,21 +58,6 @@
                 </td>
                 <td th:text="${manufacturer.name}">
 
-    <div>
-        <div id="options">
-            <a href="">ADD A NEW CAR MODEL PRODUCED BY <th:block th:text="${manufacturer.name}"/></a>
-        </div>
-        <div id="results">
-            <div>
-                <a th:each="model : ${manufacturer.carModels}" th:href="@{'/model/{id}' (id=${model.id})}">
-                    <div style="height: 176px;">
-                        <img class="resultOptionImage" src="https://images2.minutemediacdn.com/image/upload/c_crop,h_726,w_1292,x_199,y_0/f_auto,q_auto,w_1100/v1578352479/shape/mentalfloss/62455-shout-factory1.jpg">
-                    </div>
-                    <p th:text="${model.name}"></p>
-                </a>
-            </div>
-        </div>
-
 
                 </td>
             </tr>
@@ -89,22 +74,23 @@
                     Available models from this manufacturer:
                 </td>
                 <td>
-                    <div class="resultOption">
-                        <ul>
-                            <li th:each="model : ${manufacturer.carModels}" >
-                                <a th:href="@{'/model/{id}' (id=${model.id})}">
-                                    <th:block th:text="${model.name}"/>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li th:each="model : ${manufacturer.carModels}" >
+                            <a th:href="@{'/model/{id}' (id=${model.id})}">
+                                <th:block th:text="${model.name}"/>
+                            </a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
             </tbody>
         </table>
-        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-            <a th:href="@{'/manufacturer/{id}/edit' (id=${manufacturer.id})}">Edit</a>
-        </th:block>
+    </div>
 
+    <div class="carButtons">
+        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+        <a class="carButton btn btn-outline-secondary btn-sm" href="">ADD A NEW CAR MODEL PRODUCED BY <th:block th:text="${manufacturer.name}"/></a>
+            <a class="carButton btn btn-outline-secondary btn-sm" th:href="@{'/manufacturer/{id}/edit' (id=${manufacturer.id})}">Edit</a>
+        </th:block>
     </div>
 </section>

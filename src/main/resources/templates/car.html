@@ -1,10 +1,11 @@
-
 <section xmlns:th="http://www.thymeleaf.org">
-    <h1 th:text="${car.name}"/>
+    <div class="carTitle">
+        <h2 th:text="${car.name}"/>
+    </div>
     <br>
 
     <div class="carTableHolder">
-        <img th:src="${car.image}" style="width: 500px;display: inherit;margin: auto;">
+        <img th:src="${car.image}" class="carImage">
         <table class="carTable">
             <thead>
                 <tr>
@@ -75,14 +76,22 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="carButtons">
         <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-            <a th:href="@{'/car/{id}/edit' (id=${car.id})}">Edit</a>
-            <form method="post" th:action="@{'/car/{id}/delete' (id=${car.id})}">
-                <button type="submit">Delete</button>
-            </form>
+            <div class="carButton">
+                <a class="btn btn-outline-secondary btn-sm" th:href="@{'/car/{id}/edit' (id=${car.id})}">Edit</a>
+            </div>
+            <div class="carButton">
+                <form method="post" th:action="@{'/car/{id}/delete' (id=${car.id})}">
+                    <button class="btn btn-outline-secondary btn-sm" type="submit">Delete</button>
+                </form>
+            </div>
         </th:block>
-        <th:block>
-            <a th:href='${"/car/compare/" + car.id}'>Compare with another car</a>
-        </th:block>
+        <div class="carButton">
+            <th:block>
+                <a class="btn btn-outline-secondary btn-sm" th:href='${"/car/compare/" + car.id}'>Compare with another car</a>
+            </th:block>
+        </div>
     </div>
 </section>

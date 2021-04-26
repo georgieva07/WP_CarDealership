@@ -37,7 +37,7 @@
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
-    <div>
+    <div style="width: 1000px;margin: auto;display: block">
         <th:block sec:authorize="hasRole('ROLE_ADMIN')">
             <a href="/manufacturer/add">ADD A NEW MANUFACTURER</a>
         </th:block>
@@ -48,12 +48,12 @@
             OPTIONS HERE
         </div>
         <div id="results">
-            <div>
+            <div class="resultOption">
                 <a th:each="mnf : ${manufacturers}" th:href="@{'/manufacturer/{id}' (id=${mnf.id})}">
                     <div style="height: 176px;">
                         <img class="resultOptionImage" th:src="${mnf.image}">
                     </div>
-                    <p th:text="${mnf.name}"></p>
+                    <p class="resultOptionText" th:text="${mnf.name}"></p>
                 </a>
             </div>
         </div>

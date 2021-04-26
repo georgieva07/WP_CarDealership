@@ -20,27 +20,14 @@
     #options::-webkit-scrollbar {
         width: 0;
     }
-    .resultOption {
-        width:200px;
-        height:200px;
-        float:left;
-        border-style: solid;
-        border-color: #f2f2f2;
-        border-collapse: collapse;
-        text-decoration: none;
-        overflow-wrap: normal;
-    }
-    .resultOptionImage {
-        max-width: 180px;
-        max-height: 176px;
-        padding-left: 10px;
-    }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
-    <div>
-        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-            <a href="/car/add">ADD A NEW CAR</a>
-        </th:block>
+    <div style="width: 1000px;margin: auto;display: block">
+        <div>
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <a href="/car/add">ADD A NEW CAR</a>
+            </th:block>
+        </div>
     </div>
 
     <div style="width: 1000px;margin: auto;display: block">
@@ -48,14 +35,16 @@
             OPTIONS HERE
         </div>
         <div id="results">
-            <div class="resultOption">
-                <a th:each="car : ${cars}" th:href="@{'/car/{id}' (id=${car.id})}">
+            <a th:each="car : ${cars}" th:href="@{'/car/{id}' (id=${car.id})}">
+                <div class="resultOption">
                     <div style="height: 176px;">
                         <img class="resultOptionImage" th:src="${car.image}">
                     </div>
-                    <th:block th:text="${car.name}"/>
-                </a>
-            </div>
+                    <div class="resultOptionText" th:text="${car.name}">
+
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
     <div></div>

@@ -35,8 +35,11 @@
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
+    <div class="carTitle">
+        <h2 th:text="${carModel.name}"/>
+    </div>
     <div style="width: 500px;margin:auto;display:grid">
-        <img th:src="${carModel.image}" style="width: 500px;display: inherit;margin: auto;">
+        <img th:src="${carModel.image}" class="carImage">
         <table class="carTable">
             <thead>
             <tr>
@@ -70,21 +73,21 @@
                     Available cars from this model:
                 </td>
                 <td>
-                    <div class="resultOption">
-                        <ul>
-                            <li th:each="car : ${carModel.cars}" >
-                                <a th:href="@{'/car/{id}' (id=${car.id})}">
-                                    <th:block th:text="${car.name}"/>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li th:each="car : ${carModel.cars}" >
+                            <a th:href="@{'/car/{id}' (id=${car.id})}">
+                                <th:block th:text="${car.name}"/>
+                            </a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
             </tbody>
         </table>
-        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-            <a th:href="@{'/model/{id}/edit' (id=${carModel.id})}">Edit</a>
-        </th:block>
+        <div class="carButtons">
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <a class="carButton btn btn-outline-secondary btn-sm" th:href="@{'/model/{id}/edit' (id=${carModel.id})}">Edit</a>
+            </th:block>
+        </div>
     </div>
 </section>

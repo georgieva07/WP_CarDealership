@@ -13,23 +13,20 @@
                             <li><a class="btn btn-light" href="/car">Cars</a></li>
                             <li><a class="btn btn-light" href="/model">Car Models</a></li>
                             <li><a class="btn btn-light" href="/manufacturer">Manufacturer</a></li>
-                            <li><a class="btn btn-light" href="/dealership">Dealserships</a></li>
+                            <li><a class="btn btn-light" href="/dealership">Dealerships</a></li>
                             <li><a class="btn btn-light" href="/country">Countries</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <form class="form-inline" style="margin-top: 15px" th:method="post">
+                <div class="form-inline" style="margin-top: 15px">
                     <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Log in:</span>
-                        </div>
-                        <input type="text" class="form-control form-control-sm" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="username">
-                        <input type="password" class="form-control form-control-sm" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" name="password">
-                        <input type="submit" value="Submit" class="btn btn-outline-secondary btn-sm">
+                        <a sec:authorize="isAnonymous()" class="btn btn-outline-secondary btn-sm" href="/login">Login</a>
+                        <a sec:authorize="isAnonymous()" class="btn btn-secondary btn-sm" href="/register">Register</a>
+                        <a sec:authorize="isAuthenticated()" class="btn btn-outline-secondary btn-sm" href="/logout">Logout</a>
+                        <span sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="name"></span></span>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
     </nav>
 </header>
