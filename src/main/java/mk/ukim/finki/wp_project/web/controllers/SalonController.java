@@ -1,13 +1,10 @@
 package mk.ukim.finki.wp_project.web.controllers;
 
-import mk.ukim.finki.wp_project.model.Country;
-import mk.ukim.finki.wp_project.model.Salon;
-import mk.ukim.finki.wp_project.model.User;
+import mk.ukim.finki.wp_project.model.*;
+import mk.ukim.finki.wp_project.model.exceptions.InvalidCarIdException;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidCountryIdException;
 import mk.ukim.finki.wp_project.model.exceptions.InvalidSalonIdException;
-import mk.ukim.finki.wp_project.service.CountryService;
-import mk.ukim.finki.wp_project.service.SalonService;
-import mk.ukim.finki.wp_project.service.UserService;
+import mk.ukim.finki.wp_project.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +16,19 @@ import java.util.List;
 @RequestMapping("/dealership")
 public class SalonController {
     private final SalonService salonService;
+    private final CarService carService;
+    private final CarInStockService carInStockService;
     private final CountryService countryService;
     private final UserService userService;
 
-    public SalonController(SalonService salonService, CountryService countryService, UserService userService) {
+    public SalonController(SalonService salonService, CarService carService, CarInStockService carInStockService, CountryService countryService, UserService userService) {
         this.salonService = salonService;
+        this.carService = carService;
+        this.carInStockService = carInStockService;
         this.countryService = countryService;
         this.userService = userService;
     }
+
 
     @GetMapping
     public String showSalon(Model model) {
@@ -43,6 +45,7 @@ public class SalonController {
         model.addAttribute("bodyContent", "salon");
         model.addAttribute("salon", this.salonService.findById(id));
         model.addAttribute("user", user);
+        model.addAttribute("cars", this.salonService.findById(id).getCarsInStock());
 
         return "main_view";
     }
@@ -98,6 +101,23 @@ public class SalonController {
         List<Salon> salons = this.salonService.listAll();
         model.addAttribute("bodyContent", "salon_browse");
         model.addAttribute("salons", salons);
+        return "main_view";
+    }
+
+    @GetMapping("/{id}/add/carstock")
+    public String showAddCarInStock(@PathVariable Long id, Model model) throws InvalidSalonIdException {
+        List<Car> cars = this.carService.listAll();
+        model.addAttribute("bodyContent", "car_in_stock_form");
+        model.addAttribute("salon", this.salonService.findById(id));
+        model.addAttribute("cars", cars);
+        return "main_view";
+    }
+
+    @PostMapping("/{id}/add/carstock")
+    public String addCarInStock(@PathVariable Long id, @RequestParam Long carId, @RequestParam Integer quantity, Model model) throws InvalidSalonIdException, InvalidCarIdException {
+        this.carInStockService.create(carId, id, quantity);
+        model.addAttribute("bodyContent", "salon");
+        model.addAttribute("salon", this.salonService.findById(id));
         return "main_view";
     }
 

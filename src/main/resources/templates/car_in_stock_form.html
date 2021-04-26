@@ -1,0 +1,47 @@
+<section xmlns:th="http://www.thymeleaf.org">
+    <h1>CAR IN STOCK</h1>
+    <form method="post"  th:action="@{'/dealership/{id}/add/carstock' (id=${salon?.id})}">
+        <div class="carTableHolder">
+            <table class="carTable">
+                <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Value
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        Car
+                    </td>
+                    <td>
+                        <input id="carId" list="carNames" name="carId" />
+                        <datalist id="carNames">
+                            <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.name}"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Quantity
+                    </td>
+                    <td>
+                        <input type="number"
+                               id="quantity"
+                               name="quantity"
+                               required>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="carButtons">
+                <button class="carButton btn btn-outline-secondary btn-sm" id="submit" type="submit">Submit</button>
+                <a class="carButton btn btn-outline-secondary btn-sm" id="back" th:href="@{'/dealership/{id}/addCarInStock' (id=${salon?.id})}" type="button">Back</a>
+            </div>
+        </div>
+    </form>
+</section>

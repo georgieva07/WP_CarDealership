@@ -72,6 +72,20 @@
 
                 </td>
             </tr>
+            <tr>
+                <td>
+                    Available cars in this Dealership:
+                </td>
+                <td>
+                    <ul>
+                        <li th:each="carInStock : ${cars}" >
+                            <a th:href="@{'/car/{id}' (id=${carInStock.car.id})}">
+                                <th:block th:text="${carInStock.car.name}"/>
+                            </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
             </tbody>
         </table>
         <div>
@@ -82,6 +96,7 @@
                 </form>
             </th:block>
         </div>
+        <a th:href="@{'/dealership/{id}/add/carstock' (id=${salon.id})}">Add a new car in this Dealership</a>
         <a href="/dealership">Back</a>
     </div>
 </section>
