@@ -46,14 +46,14 @@
 
     <div style="width: 1000px;margin: auto;display: block">
         <div id="results">
+            <a th:each="mnf : ${manufacturers}" th:href="@{'/manufacturer/{id}' (id=${mnf.id})}">
             <div class="resultOption">
-                <a th:each="mnf : ${manufacturers}" th:href="@{'/manufacturer/{id}' (id=${mnf.id})}">
                     <div style="height: 176px;">
                         <img class="resultOptionImage" th:src="${mnf.image}">
                     </div>
-                    <p class="resultOptionText" th:text="${mnf.name}"></p>
-                </a>
+                    <div class="resultOptionText" th:text="${mnf.name}"></div>
             </div>
+            </a>
         </div>
 
     </div>
