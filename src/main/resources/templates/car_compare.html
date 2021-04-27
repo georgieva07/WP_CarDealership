@@ -5,12 +5,26 @@
         float:left;
         width: 345px;
         margin-left: 5px;
+        border-radius: 5px;
     }
 
     .textName {
         text-align: right;
         float:left;
         width:150px;
+    }
+    .imageHolder {
+        width:500px;
+        height:200px;
+        border-radius: 15px;
+        border: 1px solid #717171;
+        border-collapse: collapse
+    }
+    .carImage{
+        max-width: 500px;
+        max-height: 200px;
+        display: inherit;
+        margin: auto;
     }
 </style>
 <section xmlns:th="http://www.thymeleaf.org">
@@ -26,8 +40,10 @@
     </div>
     </div>
     <div style="width:1000px;margin:auto;display: block">
-        <div style="width: 500px;display:grid;float:left;">
-            <img th:src="${car.image}" style="height: 200px;display: inherit;margin: auto;">
+        <div style="width: 500px;display:grid;float:left;border-right: 1px solid #717171;border-collapse: collapse">
+            <div class="imageHolder" style="background-color:#e6e6e6;">
+                <img class="carImage" th:src="${car.image}">
+            </div>
             <div>
                 <label class="textName" for="manufacturer">Manufacturer: </label>
                 <input class="textValue" type="text" readonly="readonly" id="manufacturer" th:value="${car.model.manufacturer.name}"/>
@@ -57,8 +73,10 @@
                 <input class="textValue" type="text" readonly="readonly" id="color"  th:value="${car.color}"/>
             </div>
         </div>
-        <div hidden="hidden" style="height: 200px;display:grid;" th:each="car: ${compare_with}" th:id="${car.id}">
-            <img th:src="${car.image}" style="width: 500px;display: inherit;margin: auto;">
+        <div hidden="hidden" style="width: 500px;display:grid;" th:each="car: ${compare_with}" th:id="${car.id}">
+            <div class="imageHolder" style="background-color:#cfd8e8;border-radius: 15px">
+                <img class="carImage" th:src="${car.image}">
+            </div>
             <div>
                 <label class="textName" th:for="manufacturerCompare+${car.id}">Manufacturer: </label>
                 <input class="textValue" type="text" readonly="readonly" th:id="manufacturerCompare+${car.id}" th:value="${car.model.manufacturer.name}"/>
@@ -93,13 +111,55 @@
                 <input th:value="${car.color}" class="textValue" type="text" readonly="readonly" th:id="colorCompare+${car.id}" />
             </div>
         </div>
+        <div style="width: 500px;display:grid;" id="-1">
+            <div class="imageHolder" style="background-color:#cfd8e8;border-radius: 15px">
+                <img class="carImage" th:src="${car.image}">
+            </div>
+            <div>
+                <label class="textName" th:for="manufacturerCompare+${car.id}">Manufacturer: </label>
+                <input class="textValue" type="text" readonly="readonly" th:id="manufacturerCompare+${car.id}" th:value="${car.model.manufacturer.name}"/>
+            </div>
+            <div>
+                <label class="textName" th:for="modelNameCompare">Model name: </label>
+                <input th:value="${car.model.name}" class="textValue" type="text" readonly="readonly" th:id="modelNameCompare+${car.id}"/>
+            </div>
+
+            <div>
+                <label class="textName" th:for="bodyCompare+${car.id}">Body: </label>
+                <input th:value="${car.body}" class="textValue" type="text" readonly="readonly" th:id="bodyCompare+${car.id}"/>
+            </div>
+
+            <div>
+                <label class="textName" th:for="engineCompare+${car.id}">Engine: </label>
+                <input th:value="${car.engine}" class="textValue" type="text" readonly="readonly" th:id="engineCompare+${car.id}" />
+            </div>
+
+            <div>
+                <label class="textName" th:for="turboCompare+${car.id}">Turbo: </label>
+                <input th:value="${car.turbo}" class="textValue" type="text" readonly="readonly" th:id="turboCompare+${car.id}" />
+            </div>
+
+            <div>
+                <label class="textName" th:for="doorsCompare+${car.id}">Doors: </label>
+                <input th:value="${car.doors}" class="textValue" type="text" readonly="readonly" th:id="doorsCompare+${car.id}"/>
+            </div>
+
+            <div>
+                <label class="textName" th:for="colorCompare+${car.id}">Color: </label>
+                <input th:value="${car.color}" class="textValue" type="text" readonly="readonly" th:id="colorCompare+${car.id}" />
+            </div>
+        </div>
+        <br/>
     </div>
-    <br/>
     <script th:inline="javascript">
-        let previous = undefined;
+        let previous = "-1";
         function updateCompareCar(){
             selected = $("#carSelect").val();
             console.log(selected);
+            if(String(selected) === "") {
+                console.log("return");
+                return;
+            }
             document.getElementById(selected).hidden=false;
             if(previous !== undefined) {
                 document.getElementById(previous).hidden=true;
