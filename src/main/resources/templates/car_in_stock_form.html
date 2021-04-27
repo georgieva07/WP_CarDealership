@@ -40,7 +40,7 @@
             </table>
             <div class="carButtons">
                 <button class="carButton btn btn-outline-secondary btn-sm" id="submit" type="submit">Submit</button>
-                <a class="carButton btn btn-outline-secondary btn-sm" id="back" th:href="@{'/dealership/{id}/addCarInStock' (id=${salon?.id})}" type="button">Back</a>
+                <a class="carButton btn btn-outline-secondary btn-sm" id="back" th:href="@{'/dealership/{id}' (id=${salon?.id})}" type="button">Back</a>
             </div>
         </div>
     </form>

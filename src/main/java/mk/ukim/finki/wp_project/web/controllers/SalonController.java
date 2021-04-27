@@ -116,8 +116,8 @@ public class SalonController {
     @PostMapping("/{id}/add/carstock")
     public String addCarInStock(@PathVariable Long id, @RequestParam Long carId, @RequestParam Integer quantity, Model model) throws InvalidSalonIdException, InvalidCarIdException {
         this.carInStockService.create(carId, id, quantity);
-        model.addAttribute("bodyContent", "salon");
-        model.addAttribute("salon", this.salonService.findById(id));
+        model.addAttribute("bodyContent", "salon_browse");
+        model.addAttribute("salons", this.salonService.listAll());
         return "main_view";
     }
 
